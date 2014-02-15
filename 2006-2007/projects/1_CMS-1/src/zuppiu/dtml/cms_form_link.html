@@ -1,0 +1,27 @@
+<[message::mex library="zuppiu"]>
+<form name="form_link" method="post">
+<input type="hidden" name="page" value="1"/>
+<table class="forms">
+	<tr>
+		<td class="title" colspan="2">Aggiungi Link</td>
+	</tr>
+	<tr>
+		<td width="80%">Nome:<br/>
+		<input type="text" name="nome" size="50" maxlength="20" value="<[nome]>" /></td>
+	</tr>
+	<tr>
+		<td width="80%">URI:<br/>
+		<span>http://</span> <input type="text" name="url" size="50" maxlength="255" value="<[url]>" /></td>
+	</tr>
+	<tr>
+		<td width="80%">Descrizione:<br/>
+		<textarea name="descrizione" rows="10"><[descrizione]></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+		<button type="button" onclick="checkFields('link','form_link');">Salva</button>
+		<button type="reset">Cancella</button>
+		</td>
+	</tr>
+</table>
+</form>

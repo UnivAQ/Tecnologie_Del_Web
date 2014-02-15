@@ -1,0 +1,33 @@
+<[kindatext]><[message::mex library="zuppiu"]>
+<form name="form_contenuto" method="post">
+	<input type="hidden" name="pubblicato" value=""/>
+	<input type="hidden" name="sezioni" value='<[sezioniSelezionate::pipe library="zuppiu"]>'/>
+	<input type="hidden" name="page" value="1"/>
+	<input type="hidden" name="selectedFiles" value="" />
+	<table class="forms">
+		<tr>
+			<td class="title" colspan="3">Aggiungi Contenuto <span id="code"></span></td>
+		</tr>
+		<tr>
+			<td colspan="3">Titolo<br/>
+			<input type="text" name="titolo" size="60" maxlength="125" value="<[titolo]>"/>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" width="50%">Testo</td>
+			<td align="right" width="25%"><button type="button" onclick="joinFile();">Associa File</button>&nbsp;<button type="button" onclick="redir('zuppiu_content.php?editor=1');">Rich</button>&nbsp;<button type="button" onclick="redir('zuppiu_content.php');">Plain</button></td>
+			<td width="25%" valign="bottom" align="center">Sezioni</td>
+		</tr>
+		<tr>
+			<td width="75%" colspan="2" valign="top"><textarea name="testo" cols="25" rows="15"><[testo]></textarea></td>
+			<td width="25%" valign="top"><[sottosezioni::subcheck library="zuppiu" text="nome" value="id"]></td>
+		</tr>
+		<tr id="file"></tr>
+		<tr>
+			<td align="right" colspan="3">
+				<button type="button" name="draft" onclick="saveAsEditedDraft();">Salva come bozza</button>&nbsp;
+				<button type="button" onclick="publicEditedArticle(<[editortype]>);">Pubblica</button>&nbsp;
+			</td>
+		</tr>
+		</table>
+</form>

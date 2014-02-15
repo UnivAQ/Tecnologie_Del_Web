@@ -1,0 +1,70 @@
+<[message::mex library="zuppiu"]>
+<form name="form_utente" method="post">
+<input type="hidden" name="page" value="1"/>
+<table class="forms">
+	<tr>
+		<td class="title" colspan="2">Aggiungi Utente</td>
+	</tr>
+	<tr>
+		<td colspan="2"><span>I campi contrassegnati con l'asterisco (*) sono obbligatori.</span></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Username*:</td>
+		<td width="80%"><input type="text" name="username" size="30" maxlength="25"  onmouseover="tip('un',1);" onmouseout="tip('un',0);" value="<[username]>" /> <span id="un_tip"></span></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Password*:</td>
+		<td width="80%"><input type="password" name="password" size="20" maxlength="20" onmouseover="tip('pw',1);" onmouseout="tip('pw',0);"/> <span id="pw_tip"></span></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Conferma Password*:</td>
+		<td width="80%"><input type="password" name="password_confirm" size="20" maxlength="20" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Gruppo*:</td>
+		<td width="80%"><[gruppo::select library="zuppiu" value="id"]></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Nome*:</td>
+		<td width="80%"><input type="text" name="nome" size="30" value="<[nome]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Cognome*:</td>
+		<td width="80%"><input type="text" name="cognome" size="30" value="<[cognome]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Data di nascita*:</td>
+		<td width="80%"><input type="text" name="data_di_nascita" size="30" value="<[data_di_nascita]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Indirizzo:</td>
+		<td width="80%"><input type="text" name="via" size="51" value="<[via]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Citt&agrave;:</td>
+		<td width="80%"><input type="text" name="citta" size="30" value="<[citta]>" /> CAP*: <input type="text" name="cap" size="10" maxlength="5" value="<[cap]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Email*:</td>
+		<td width="80%"><input type="text" name="email" size="51" value="<[email]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Telefono*:</td>
+		<td width="80%"><input type="text" name="telefono_fisso" size="20" value="<[telefono_fisso]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Cellulare:</td>
+		<td width="80%"><input type="text" name="telefono_mobile" size="20" value="<[telefono_mobile]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Homepage:</td>
+		<td width="80%"><span>http://</span> <input type="text" name="url" size="51" value="<[url]>" /></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+		<button type="button" onclick="checkFields('utente','form_utente')">Salva</button>
+		<button type="reset">Cancella</button>
+		</td>
+	</tr>
+</table>
+</form>

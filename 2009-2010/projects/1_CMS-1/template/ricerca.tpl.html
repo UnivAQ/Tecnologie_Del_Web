@@ -1,0 +1,30 @@
+{include file="header.tpl.html"}
+Ricerca i prodotti caricati nel sito:<br>
+<form action="ricerca.php" method="post" id="ricerca">
+    <input type="text" name="q">
+    <input type="submit" value="Cerca!">
+</form>
+<br /><br />
+Cerca la recensione del prodotto che ti interessa. Modificala, esprimi un feedback e lascia commenti. <br /><br />
+Sei un'azienda? Registrati e pubblica la tua recenzione.
+<br /><br />
+{if $oggetti}
+
+
+       <div class="productContainer">
+      {foreach from=$oggetti item=oggetto}
+<div class="pic1"><img src="img.php?id={$oggetto.id_prodotto}" alt="s" width="90" />
+    <div class="picText1"><strong><a href="prodotto.php?id_prodotto={$oggetto.id_prodotto}">{$oggetto.titolo}</a></strong></div>
+            {$oggetto.descrizione}...
+        </div>
+       {/foreach}
+
+    </div>
+
+    
+{else}
+{if !$no_query}
+<h3>Nessun risultato trovato.</h3>
+{/if}
+{/if}
+{include file="footer.tpl.html"}

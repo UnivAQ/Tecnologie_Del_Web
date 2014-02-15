@@ -1,0 +1,147 @@
+@media screen {
+    div#site_container {
+        background:url("/img/bg_site_clear.png") repeat-y scroll left top #FFFFFF;
+    }
+
+    div#content {
+        width:780px;
+        font-family: verdana, arial, sans-serif;
+        font-size: 12px;
+    }
+
+    div#footer {
+        background:url("/img/bg_footer_clear.jpg") no-repeat scroll center #9CA546;
+    }
+
+    p {
+        font-family: verdana, arial, sans-serif;
+        font-size: 12px;
+        color: black;
+    }
+
+    #checkout {
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+
+    #checkout-products-summary {
+        border: 1px solid gray;
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+
+    p.title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #852612;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    #checkout-grid {
+        width: 100%;
+        text-align: center;
+        empty-cells: hide;
+    }
+
+    #checkout-grid th {
+        font-size: 14px;
+        padding: 5px 0 5px 0;
+    }
+
+    #checkout-grid td {
+        border: 1px solid gray;
+        padding: 3px 0 3px 0;
+    }
+
+    #reminder-back-home {
+        font-size: 13px;
+        text-align: right;
+        color: black;
+    }
+
+    #checkout-user-informations {
+        margin-top: 30px;
+    }
+
+    #checkout-user-informations form {
+        margin-left: 20px;
+    }
+
+    #checkout-user-informations label {
+        display: block;
+        margin-right: 10px;
+        float: left;
+        text-align: right;
+        width: 140px;
+    }
+
+    #checkout-user-informations input[type="text"] {
+        padding: 3px;
+        border: 1px solid gray;
+        width: 30%;
+    }
+
+    #name-text, #surname-text, #address-text {
+        width: 30%;
+    }
+
+    #cap-text {
+        width: 40px !important;
+    }
+
+    #notes-text {
+        border: 1px solid gray;
+        height: 80px;
+        width: 300px;
+    }
+
+    #payment-options {
+        margin-top: 30px;
+    }
+
+    #payment-options label{
+        display: inline;
+    }
+
+    #payment-options img {
+        height: 30px;
+    }
+
+    #payment-options input {
+        margin-right: 40px;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    #ship-button {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 50px;
+        padding: 0 30px 0 30px;
+    }
+
+    #ship-button img {
+        height: 50px;
+    }
+
+    #checkout-complete-back-home {
+        font-family: georgia, arial, sans-serif;
+        text-align: center;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    #payment-mask {
+        margin-top: 3em;
+        margin-left: 10em;
+        margin-right: 10em;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(56, 147, 0, 0.2);
+        border-radius: 0.4em;
+    }
+}

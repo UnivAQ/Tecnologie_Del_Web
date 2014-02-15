@@ -1,0 +1,1830 @@
+<?php
+
+namespace php;
+
+require_once 'php/Object.php';
+
+class Queue extends Object
+{
+        protected
+        $_queue = array();
+
+        public
+        function __construct($elements = array())
+        {
+                foreach ((array) $elements as $element)
+                        $this->push($element);
+        }
+
+        public
+        function push($element)
+        {
+                $this->_queue[] = $element;
+
+                return $this;
+        }
+
+        public
+        function pop()
+        {
+                if (empty($this->_queue))
+                        return null;
+
+                return \array_shift($this->_queue);
+        }
+}
+<?php
+
+namespace php;
+
+require_once 'php/Queue.php';
+
+class ActiveQueue extends Queue
+{
+        public
+        function run()
+        {
+                $args = \func_get_args();
+
+                while ($fn = $this->pop())
+                        \call_user_func_array($fn, $args);
+
+                return $this;
+        }
+}
+<?php
+
+namespace php;
+
+class Object extends \stdClass
+{
+        public static
+        function _new_()
+        {
+                $class = \get_called_class();
+
+                $args = \func_get_args();
+
+                if ($args) {
+                        $cls = new \ReflectionClass($class);
+                        $instance = $cls->newInstanceArgs($args);
+
+                } else /* This code is faster than the reflection. */
+                        $instance = new $class();
+
+                return $instance;
+        }
+
+        public
+        function _clone_()
+        {
+                return clone $this;
+        }
+}
+<?php
+
+require_once 'setting.php';
+
+$ds = DIRECTORY_SEPARATOR;
+
+preg_match('/[^?]+/', $_SERVER['REQUEST_URI'], $matches);
+$request = array_pop($matches);
+
+$app = 'tdw/app';
+
+$app .= $request == '/' ?
+                '/index'
+        :       rtrim($request, '/')
+;
+
+$app = str_replace('-', '_', $app);
+
+$app = dirname($app).'/'.ucfirst(basename($app));
+
+/* Windows compliance. */
+if (! is_file("libs{$ds}".str_replace('/', $ds, $app).'.php'))
+        $app = 'tdw/app/Code404';
+
+$app = str_replace('/', '\\', $app);
+
+$app::_new_(require 'tdw/config.php');
+<?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
+
+$ds = DIRECTORY_SEPARATOR;
+$ps = PATH_SEPARATOR;
+
+/* The project root. */
+chdir(dirname(__FILE__)."${ds}..${ds}..");
+
+/* The cwd is no more useful in the include path. */
+set_include_path(ltrim(get_include_path(), '.:'));
+
+set_include_path("res{$ds}libs".$ps.get_include_path());
+set_include_path('libs'.$ps.get_include_path());
+
+spl_autoload_register(function($class) {
+        if (class_exists($class, false) or interface_exists($class, false))
+                return;
+
+        $file = str_replace('\\', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+
+        $old = set_error_handler(function() {});
+
+        include_once $file;
+
+        set_error_handler($old);
+});
+
+set_error_handler(function($errno, $errstr, $errfile, $errline) {
+        print   "Error catched by the app:"
+                ."\nMessage = ".$errstr
+                ."\nCode = ".$errno
+                ."\nFile = ".$errfile
+                ."\nLine = ".$errline."\n"
+        ;
+});
+
+set_exception_handler(function(Exception $exception) {
+        print   "Exception catched by the app:"
+                ."\nMessage = {\n".$exception->getMessage()."\n}"
+                ."\nCode = ".$exception->getCode()
+                ."\nFile = ".$exception->getFile()
+                ."\nLine = ".$exception->getLine()
+                ."\nTrace = ".$exception->getTraceAsString()."\n"
+        ;
+});
+
+register_shutdown_function (function(){});
+<?php
+
+namespace tdw\helper;
+
+class Image extends \php\Object
+{
+        protected $_dir = './img/';
+
+        protected  $_prefix = '/img/';
+
+        public
+        function __construct($dir = null, $prefix = null)
+        {
+                if ($dir)
+                        $this->_dir = $dir;
+
+                if ($prefix)
+                        $this->_prefix = $prefix;
+        }
+
+        public
+        function publicate($payload, $type)
+        {
+                $hash = \md5($payload);
+
+                $file = \str_replace('/', \DIRECTORY_SEPARATOR, $this->_dir)
+                        ."{$hash}.{$type}"
+                ;
+                if (!\is_readable($file)) {
+                        if (! \is_dir($dir = \dirname($file)))
+                                \mkdir($dir, 0770, true);
+
+                        \file_put_contents($file, $payload);
+                }
+
+                return $this->_prefix."{$hash}.{$type}";
+        }
+}
+<?php
+
+namespace tdw\helper;
+
+use \tdw\model\Capabilities;
+use \tdw\model\Operators;
+
+class Auth extends \php\Object
+{
+        protected
+        $_data = array();
+
+        public
+        function __construct()
+        {
+                session_start();
+
+                if (isset($_SESSION['auth'])) {
+                        $uid = $_SESSION['auth']['uid'];
+
+                        $operator = Operators::getByUid($uid);
+                        $operator['capabilities'] = \array_map(
+                                function($value) {
+                                        return $value['name'];
+                                },
+                                Capabilities::getByOperatorId(
+                                        $operator['id']
+                                )
+                        );
+                        $_SESSION['auth'] = $this->_data = $operator;
+                }
+
+                if (isset($_POST['signin'])
+                    and isset($_POST['uid'])
+                    and isset($_POST['pass'])) {
+                        $uid = $_POST['uid'];
+                        $pass = $_POST['pass'];
+
+                        $operator = Operators::getByUid($uid);
+                        if ($operator['pass'] == \md5($pass)) {
+                                $operator['capabilities'] = \array_map(
+                                        function($value) {
+                                                return $value['name'];
+                                        },
+                                        Capabilities::getByOperatorId(
+                                                $operator['id']
+                                        )
+                                );
+                                $_SESSION['auth'] = $this->_data = $operator;
+                        }
+                }
+
+                if (isset($_GET['signout'])) {
+                        $_SESSION = $this->_data = array();
+                }
+        }
+
+        public
+        function __destruct()
+        {
+                \session_write_close();
+        }
+
+        public
+        function get($entry = null)
+        {
+                if ($entry == null)
+                        return $this->_data;
+
+                return $this->_data[$entry];
+        }
+
+        public
+        function isAuthenticated()
+        {
+                return isset($this->_data['id']);
+        }
+
+        public
+        function isCapableOf($capability)
+        {
+                return $this->isAuthenticated()
+                        and \in_array($capability, $this->_data['capabilities'])
+                ;
+        }
+}
+<?php
+
+namespace tdw;
+
+abstract class ApplicationAbstract extends \php\Object
+{
+        protected $_config;
+
+        protected $_smarty;
+
+        protected $_map = array();
+
+        /* DEPRECATED */
+        protected $_tpl = array();
+
+        protected $_auth;
+
+        public final
+        function __construct(array $config) {
+                ob_start();
+
+                if (!$config['debug']) {
+                        \error_reporting(0);
+                        \ini_set('display_errors', false);
+                        \ini_set('display_startup_errors', false);
+                }
+
+                $this->_config = $config;
+
+                $this->_setSmarty();
+                $this->_setDbConnection();
+                $this->_setAuth();
+                $this->_setImage();
+
+                if (\method_exists($this, '_init'))
+                        $this->_init();
+
+                $return = $this->_run();
+
+                if ($return) {
+                        $redirect = \substr($return, 0, \strlen($r="redirect:"))
+                                        ==
+                                    $r
+                       ;
+                        if ($redirect) {
+                                $target = \substr($return, \strlen($r));
+
+                                header("Location: {$target}");
+                        } else {
+                                $view = $this->_render($return);
+
+                                $view .= \ob_get_contents();
+                                \ob_clean();
+
+                                echo $view;
+                        }
+                }
+
+                $view = \ob_get_contents();
+                \ob_clean();
+
+                if ($this->_config['compression.active']) {
+                        \header('Content-Encoding: gzip');
+                        $view = \gzencode($view, 6, \FORCE_GZIP);
+                }
+
+                echo $view;
+
+                ob_end_flush();
+        }
+
+        public
+        function __destruct()
+        {}
+
+        protected
+        function _render($view)
+        {
+                //header('Content-Type: application/xhtml+xml; charset=UTF-8');
+                header('Content-Type: text/html; charset=UTF-8');
+
+                return $this->_smarty->fetch($view . '.tpl');
+        }
+
+        private
+        function _setSmarty()
+        {
+                $ds = \DIRECTORY_SEPARATOR;
+
+                require_once 'Smarty/Smarty.class.php';
+
+                $smarty = new \Smarty();
+
+                //$smarty->allow_php_templates = true;
+                $smarty->cache_dir = "res{$ds}smarty{$ds}cache";
+                $smarty->config_dir = "res{$ds}smarty{$ds}config";
+                $smarty->template_dir = "res{$ds}tpl";
+                $smarty->compile_dir = "res{$ds}smarty{$ds}template_c";
+                $smarty->left_delimiter = '%{ ';
+                $smarty->right_delimiter = ' }%';
+                //$smarty->compile_id      = $this->_request->getServerDomain();
+                //$smarty->use_sub_dirs    = true;
+                $smarty->security = false;
+                //$smarty->secure_dir      = array(0 => ..., 1 => ...);
+                //$smarty->trusted_dir     = array();
+                $smarty->caching = false;
+                //$smarty->cache_lifetime  = 0;
+                //$smarty->compile_check   = true;
+                //$smarty->force_compile   = true;
+                //$smarty->debugging       = true;
+                //$smarty->utility->clearCompiledTemplate();
+                //$smarty->cache->clearAll();
+                //$smarty->clear_compiled_tpl();
+                //$smarty->clear_all_cache();
+
+                $smarty->assign_by_ref('_', $this->_map);
+
+                /* CONTINGENT */
+                /*
+                $this->_map = & $this->_map;
+                $smarty->assign_by_ref('tpl', $this->_map);
+                */
+
+                $this->_smarty = $smarty;
+        }
+
+        private
+        function _setDbConnection()
+        {
+                \mysql_select_db($this->_config['dbms.db'], \mysql_connect(
+                        $this->_config['dbms.host'],
+                        $this->_config['dbms.user'],
+                        $this->_config['dbms.pass']
+                ));
+        }
+
+        private
+        function _setAuth()
+        {
+                $this->_auth = \tdw\helper\Auth::_new_();
+                $this->_map['auth'] = $this->_auth->get();
+                $this->_map['auth']['isadmin'] = $this->_auth->isCapableOf("admin-r");
+        }
+
+        private
+        function _setImage()
+        {
+                $this->_image = \tdw\helper\Image::_new_(
+                        $this->_config['img.dir'],
+                        $this->_config['img.prefix']
+                );
+        }
+
+        abstract protected function _run();
+}
+<?php
+
+namespace tdw\app;
+
+class Code404 extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                echo "Questo dovrebbe essere un codice <h1>404</h1> degno del suo nome...";
+        }
+}
+<?php
+
+namespace tdw\app\admin\product;
+
+class Add extends \tdw\app\admin\Products
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("publish"))
+                        return;
+
+                if ($_SERVER['REQUEST_METHOD'] == "POST")
+                        return $this->_doPost();
+
+                return $this->_doGet();
+        }
+
+        protected
+        function _doGet()
+        {
+                return 'blocks/admin-product-add';
+        }
+
+        protected
+        function _doPost()
+        {
+                $operator_id = $this->_auth->get('id');
+                $title = \addslashes($_POST["title"]);
+                $description = \addslashes($_POST["description"]);
+                $price = $_POST["price"];
+                $category_id = $_POST["category"];
+                $image_type = $_FILES['file']['type'];
+                $image = \addslashes(\file_get_contents($_FILES['file']['tmp_name']));
+
+                $sql = "INSERT INTO products (operator_id, title, description, price, image_type, image)
+                                VALUES ({$operator_id}, '{$title}', '{$description}', {$price}, '{$image_type}', '{$image}')"
+                ;
+                $result = \mysql_query($sql);
+
+                $id = \mysql_insert_id();
+
+                $sql = "INSERT INTO products_categories (product_id, category_id)
+                                VALUES ({$id}, {$category_id})"
+                ;
+                $result = \mysql_query($sql);
+
+                parent::_run();
+
+                return 'blocks/admin-products';
+        }
+}
+<?php
+
+namespace tdw\app\admin\product;
+
+class Search extends \tdw\app\admin\Products
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("publish"))
+                        return;
+
+                $products = \tdw\model\Products::search(
+                        $_GET['query'],
+                        $this->_auth->get('id')
+                );
+
+                $this->_map['products'] = $this->_useImages($products);
+
+                return 'blocks/admin-products';
+        }
+}
+<?php
+
+namespace tdw\app\admin\product;
+
+class Edit extends \tdw\app\admin\Products
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("publish"))
+                        return;
+
+                if ($_SERVER['REQUEST_METHOD'] == "POST")
+                        return $this->_doPost();
+
+                return $this->_doGet();
+        }
+
+        protected
+        function _doGet()
+        {
+                $product_id = $_GET['id'];
+
+                $product = \tdw\model\Products::getById(
+                        $_GET['id']
+                );
+
+                foreach ($this->_map['categories'] as $key => &$category) {
+                        if ($category['name'] == $product['category']) {
+                                $category['checked'] = true;
+                        }
+                }
+
+                $this->_map['product'] = $this->_useImages(array($product));
+                $this->_map['product'] = $this->_map['product'][0];
+
+                return 'blocks/admin-product-edit';
+        }
+
+        protected
+        function _doPost()
+        {
+                $product_id = $_GET['id'];
+
+                $mod = false;
+                $query = '';
+
+                $q = "UPDATE products SET ";
+
+                if (isset($_POST["title"])) {
+                        $query .= $q;
+                        $mod = true;
+                        $v = \addslashes(\utf8_decode($_POST['title']));
+                        $query .= "title = '{$v}'";
+                }
+
+                if (isset($_POST["description"])) {
+                        if (! $mod) {
+                                $query .= $q;
+                                $mod = true;
+                        } else {
+                                $query .= ', ';
+                        }
+                        $v = \addslashes(\utf8_decode($_POST['description']));
+                        $query .= "description = '{$v}'";
+                }
+
+                if (isset($_POST["price"])) {
+                        if (! $mod) {
+                                $query .= $q;
+                                $mod = true;
+                        } else {
+                                $query .= ', ';
+                        }
+                        $query .= "price = '{$_POST['price']}'";
+                }
+
+                $query .= " WHERE id = '{$product_id}'";
+
+                $result = \mysql_query($query);
+
+                if (isset($_POST["category"])) {
+                        $query = "UPDATE products_categories
+                                        SET category_id = '{$_POST['category']}'
+                                        WHERE product_id = '{$product_id}'"
+                        ;
+                        $result = \mysql_query($query);
+                }
+
+                parent::_run();
+
+                return 'blocks/admin-products';
+        }
+}
+<?php
+
+namespace tdw\app\admin\product;
+
+class Del extends \tdw\app\admin\Products
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("publish"))
+                        return;
+
+                $operator_id = $this->_auth->get('id');
+                $product_id  = $_POST['product_id'];
+
+                \mysql_query("DELETE FROM products WHERE id = {$product_id}");
+
+                parent::_run();
+
+                return 'blocks/admin-products';
+        }
+}
+<?php
+
+namespace tdw\app\admin;
+
+class Products extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf('publish'))
+                        return 'redirect:/';
+
+                $products = \tdw\model\Products::getByOperatorId(
+                        $this->_auth->get('id')
+                );
+
+                foreach ($products as &$product) {
+                        $product['description'] = \htmlspecialchars($product['description']);
+                }
+
+                $this->_map['products'] = $this->_useImages($products);
+
+                if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+                    and $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+                        return 'blocks/admin-products';
+
+                return 'admin.products';
+        }
+}
+<?php
+
+namespace tdw\app\admin\acl;
+
+class GrAndCa extends \tdw\app\admin\Acl
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                $group_id = $_POST['group_id'];
+                $capability_id = $_POST['capability_id'];
+
+                if (isset($_POST['status'])) {
+                        $query = "INSERT INTO groups_acl (group_id, capability_id)
+                                VALUES ('{$group_id}', '{$capability_id}')"
+                        ;
+                        $result = \mysql_query($query);
+                } else {
+                        $query = "DELETE
+                                        FROM groups_acl
+                                        WHERE group_id = '{$group_id}'
+                                               AND capability_id = '{$capability_id}'"
+                        ;
+                        $result = \mysql_query($query);
+                }
+        }
+}
+<?php
+
+namespace tdw\app\admin\acl;
+
+class OpAndGr extends \tdw\app\admin\Acl
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                $operator_id = $_POST['operator_id'];
+                $group_id = $_POST['group_id'];
+
+                if (isset($_POST['status'])) {
+                        $query = "INSERT INTO operators_groups (operator_id, group_id)
+                                VALUES ('{$operator_id}', '{$group_id}')"
+                        ;
+                        $result = \mysql_query($query);
+                } else {
+                        $query = "DELETE
+                                        FROM operators_groups
+                                        WHERE operator_id = '{$operator_id}'
+                                               AND group_id = '{$group_id}'"
+                        ;
+                        $result = \mysql_query($query);
+                }
+        }
+}
+<?php
+
+namespace tdw\app\admin;
+
+class Categories extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-r"))
+                        return 'redirect:/';
+
+                return 'admin.categories';
+        }
+}
+<?php
+
+namespace tdw\app\admin;
+
+use \tdw\model\Capabilities;
+use \tdw\model\Groups;
+use \tdw\model\Operators;
+
+class Acl extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-r"))
+                        return 'redirect:/';
+
+                $operators    = Operators::getAll();
+                $groups       = Groups::getAll();
+                $capabilities = Capabilities::getAll();
+
+                $this->_map['operators'] = $operators;
+                foreach ($this->_map['operators'] as &$o) {
+                        $o['groups'] = $groups;
+
+                        foreach (Groups::getByOperatorId($o['id']) as $g) {
+                                $key = \array_search($g, $o['groups']);
+                                if ($key !== false) {
+                                        $o['groups'][$key]['checked'] = true;
+                                }
+                        }
+                }
+
+                $this->_map['groups'] = $groups;
+                foreach ($this->_map['groups'] as &$g) {
+                        $g['capabilities'] = $capabilities;
+
+                        foreach (Capabilities::getByGroupId($g['id']) as $c) {
+                                $key = \array_search($c, $g['capabilities']);
+                                if ($key !== false) {
+                                        $g['capabilities'][$key]['checked'] = true;
+                                }
+                        }
+                }
+
+                return 'admin.acl';
+        }
+}
+<?php
+
+namespace tdw\app\admin\group;
+
+class Add extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                $group = $_POST['group'];
+
+                $query = "INSERT INTO groups (name)
+                                VALUES ('{$group}')"
+                ;
+                $result = \mysql_query($query);
+
+                $id = \mysql_insert_id();
+
+                $this->_map['group'] = array(
+                    'id' => $id,
+                    'name' => $group
+                );
+
+                return 'blocks/admin-acl-group';
+        }
+}
+<?php
+
+namespace tdw\app\admin\group;
+
+class Del extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                $group_id = $_POST['group_id'];
+
+                $query = "DELETE
+                                FROM groups
+                                WHERE id = '{$group_id}'"
+                ;
+
+                $result = \mysql_query($query);
+        }
+}
+<?php
+
+namespace tdw\app\admin\category;
+
+class Add extends \tdw\app\admin\Categories
+{
+        protected
+        function _run()
+        {
+                if (!$this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                if ($_SERVER['REQUEST_METHOD'] == "POST")
+                        return $this->_doPost();
+
+                return $this->_doGet();
+        }
+
+        protected
+        function _doGet()
+        {
+                return 'blocks/admin-categories-add';
+        }
+
+        protected
+        function _doPost()
+        {
+                if (!$this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                $category_id = $_POST["category"];
+                
+                $sql = "INSERT INTO categories (name) VALUES ('{$category_id}')";
+                $result = \mysql_query($sql);
+
+                $this->_setProductCategories();
+
+                return 'blocks/admin-categories';
+        }
+}
+<?php
+
+namespace tdw\app\admin\category;
+
+class Del extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-w"))
+                        return;
+
+                $category_id = $_POST['category_id'];
+
+                $query = "DELETE
+                                FROM categories
+                                WHERE id = '{$category_id}'"
+                ;
+
+                $result = \mysql_query($query);
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Signup extends HomeAbstract
+{
+    protected
+    function _run() {
+        $temp=false;
+        $this->_map['signup_errors'][] = array();
+        //il modulo non è stato ancora inviato
+        if(isset($_POST['signup'])) {
+
+            if(!$_POST['name']) {
+                $this->_map['signup_errors']['name'] = 'name';
+                $temp = true;
+            }
+            if(!$_POST['surname']) {
+                $this->_map['signup_errors']['surname'] ='surname';
+                $temp = true;
+            }
+            if(!$_POST['username']) {
+                $this->_map['signup_errors']['username'] = 'username';
+                $temp = true;
+            }
+            //array di caratteri non ammessi
+            $bad = array('\'','.',',','/','`',';','[',']','-','*','&','^','%','$','#','@','!','~','+','(',')','|','{','}','<','>','?',':','"', '=');
+            //controlla lunghezza username
+            $len = strlen($_POST['username']);
+
+            //sostituisce caratteri non ammessi
+            $cleaned_username = str_replace($bad, '', $_POST['username']);
+            //se le lunghezze sono differenti sono stati utilizzati caratteri non ammessi
+            if(strlen($cleaned_username) == $len) {
+                //Controlla se l'username è già utlizzato nel database
+                $q2 = mysql_query("SELECT * FROM `operators` WHERE `uid` = '".$_POST['username']."'");
+
+                while ($q3 = mysql_fetch_object($q2)) {
+
+                    if($q3->uid == $_POST['username']) {
+                        $this->_map['signup_errors']['username'] = 'exist_username';
+                        $temp = true;
+                    }
+                }
+            }
+            else {
+                $this->_map['signup_errors']['username'] = 'invalid_username';
+                $temp = true;
+            }
+
+            //controlla dati relativi alla password
+            if(!$_POST['password']) {
+                $this->_map["signup_errors"]['password'] = 'password';
+                $temp = true;
+            }
+            if(!$_POST['verify_password']) {
+                $this->_map['signup_errors']['password'] = 'ver_password';
+                $temp = true;
+            }
+            if($_POST['password'] != $_POST['verify_password']) {
+                $this->_map['signup_errors']['password'] = 'diff_password';
+                $temp = true;
+            }
+            if(($_POST['password'] != "")
+                && ($_POST['password'] == $_POST['verify_password'])
+                && \strlen($_POST['password']) < 6
+                && \strlen($_POST['verify_password']) < 6 ) {
+                    $this->_map['signup_errors']['password'] = 'short_password';
+                    $temp = true;
+                }
+
+                
+            if(!$_POST['email']) {
+                $this->_map['signup_errors']['email'] = 'email';
+                $temp = true;
+            }
+            if(!$_POST['phone']) {
+                $this->_map['signup_errors']['phone'] = 'phone';
+                $temp = true;
+            }
+            if(!$_POST['address']) {
+                $this->_map['signup_errors']['address'] = 'address';
+                $temp = true;
+            }
+            if(!$_POST['cap']) {
+                $this->_map['signup_errors']['cap'] = 'cap';
+                $temp = true;
+            }
+            if(!$_POST['city']) {
+                $this->_map['signup_errors']['city'] = 'city';
+                $temp = true;
+            }
+            if(!$_POST['province']) {
+                $this->_map['signup_errors']['province'] = 'province';
+                $temp = true;
+            }
+            if(!$_POST['state']) {
+                $this->_map['signup_errors']['state'] = 'state';
+                $temp = true;
+            }
+
+            //Inserisce il nuovo membro nel database
+            if (!$temp) {
+                $sql ="INSERT INTO `operators` (uid, pass) VALUES ('".$_POST['username']."','".md5($_POST['password'])."')";
+                $result = mysql_query($sql);
+
+                $id = \mysql_insert_id();
+                $sql ="INSERT INTO `operators_infos` (operator_id, name, surname, email, address, cap, city, province, state, telephone) VALUES ('".$id."','".$_POST['name']."','".$_POST['surname']."','".$_POST['email']."','".$_POST['address']."','".$_POST['cap']."','".$_POST['city']."','".$_POST['province']."','".$_POST['state']."','".$_POST['phone']."')";
+                $result = mysql_query($sql);
+
+                $sql = "INSERT INTO operators_groups (operator_id, group_id) VALUES ('{$id}', '2')";
+                $result = mysql_query($sql);
+
+                /* INSERT INTO operators_groups (operator_id, group_id) VALUES ('{$id}', '2') */
+
+                /*$query = \mysql_query("SELECT * FROM operators AS o LEFT JOIN operators_infos AS i ON o.id = i.info_id
+                                WHERE o.id = ".$_GET['id']);*/
+
+                /*if(!$insert2) die(mysql_error());
+			if(!$insert4) die(mysql_error());*/
+                return 'blocks/signup-confirm';
+            }
+            else {
+                return 'signup';
+            }
+        }
+        return 'signup';
+    }
+}
+?>
+<?php
+
+namespace tdw\app\cart;
+
+use \tdw\model\Operators;
+
+class Checkout extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isAuthenticated())
+                        return 'redirect:/';
+
+                if ($_SERVER['REQUEST_METHOD'] == "POST")
+                        return $this->_doPost();
+
+                return $this->_doGet();
+        }
+
+        protected
+        function _doGet()
+        {
+                $this->_map['operator'] = Operators::getInfoById(
+                        $this->_auth->get('id')
+                );
+
+                return "checkout";
+        }
+
+        protected
+        function _doPost()
+        {
+                $_SESSION['cart'] = array();
+                $this->_setCart();
+
+                return "checkout-post";
+        }
+}
+<?php
+
+namespace tdw\app\cart;
+
+class Reset extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isAuthenticated())
+                        return;
+
+                $_SESSION['cart'] = array();
+                $this->_setCart();
+
+                return 'blocks/cart';
+        }
+}
+<?php
+
+namespace tdw\app\cart\product;
+
+class Inc extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isAuthenticated())
+                        return;
+
+                $id = $_POST["product"];
+
+                foreach ((array) $_SESSION['cart'] as $key => $product) {
+                        if ($product['id'] == $id) {
+                                ++$_SESSION['cart'][$key]['num'];
+                        }
+                }
+
+                $this->_setCart();
+
+                return 'blocks/cart';
+        }
+}
+<?php
+
+namespace tdw\app\cart\product;
+
+class Add extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isAuthenticated())
+                        return;
+
+                $id    = $_POST["product"];
+                $num   = $_POST["quantity"];
+
+                if (! $num)
+                        return 'cart.products';
+
+                $exists = false;
+
+                foreach ((array) $_SESSION['cart'] as $key => $product) {
+                        if ($product['id'] == $id) {
+                                $_SESSION['cart'][$key]['num'] += $num;
+                                $exists = true;
+                        }
+                }
+
+                if (! $exists) {
+                        $title = \mysql_fetch_assoc(\mysql_query(
+                                "SELECT title, price FROM products WHERE id = {$id}"
+                        ));
+
+                        $_SESSION['cart'][] = array(
+                                'id' => $id,
+                                'num' => $num,
+                                'title' => $title['title'],
+                                'price' => $title['price'],
+                        );
+                }
+
+                $this->_setCart();
+
+                return 'blocks/cart';
+        }
+}
+<?php
+
+namespace tdw\app\cart\product;
+
+class Dec extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isAuthenticated())
+                        return;
+
+                $id = $_POST["product"];
+
+                foreach ((array) $_SESSION['cart'] as $key => $product) {
+                        if ($product['id'] == $id) {
+                                --$_SESSION['cart'][$key]['num'];
+
+                                if ($_SESSION['cart'][$key]['num'] < 1)
+                                        unset($_SESSION['cart'][$key]);
+                        }
+                }
+
+                $this->_setCart();
+
+                return 'blocks/cart';
+        }
+}
+<?php
+
+namespace tdw\app\cart\product;
+
+class Set extends \tdw\app\HomeAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isAuthenticated())
+                        return;
+
+                $id  = $_POST["product"];
+                $num = $_POST["quantity"];
+
+                foreach ((array) $_SESSION['cart'] as $key => $product) {
+                        if ($product['id'] == $id) {
+                                if ($num < 1)
+                                        unset($_SESSION['cart'][$key]);
+                                else
+                                        $_SESSION['cart'][$key]['num'] = $num;
+                        }
+                }
+
+                $this->_setCart();
+
+                return 'blocks/cart';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Search extends HomeAbstract
+{
+        protected
+        function _run()
+        {
+                $products = \tdw\model\Products::search(
+                        $_GET['query']
+                );
+
+                $this->_map['products'] = $this->_useImages($products);
+                $this->_map['products_count'] = \count($products);
+
+                return 'products';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Product extends HomeAbstract
+{
+        protected
+        function _run()
+        {
+                $product = \tdw\model\Products::getById(
+                        $_GET['id']
+                );
+
+                $this->_map['product'] = $this->_useImages(array($product));
+                $this->_map['product'] = $this->_map['product'][0];
+
+                return 'product';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class About extends HomeAbstract
+{
+        protected
+        function _run()
+        {
+                return "about";
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Admin extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                if (! $this->_auth->isCapableOf("admin-r"))
+                        return 'redirect:/';
+
+                return 'admin';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Signin extends \tdw\ApplicationAbstract
+{
+        protected
+        function _run()
+        {
+                return 'redirect:/';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Index extends HomeAbstract
+{
+        protected
+        function _run()
+        {
+                return 'index';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+class Products extends HomeAbstract
+{
+        protected
+        function _run()
+        {
+                $products = \tdw\model\Products::getByCategoryId(
+                        $_GET['id']
+                );
+
+                $this->_map['products'] = $this->_useImages($products);
+                $this->_map['products_count'] = \count($this->_map['products']);
+
+                return 'products';
+        }
+}
+<?php
+
+namespace tdw\app;
+
+abstract class HomeAbstract extends \tdw\ApplicationAbstract
+{
+        protected $_image;
+
+        protected
+        function _init()
+        {
+                $this->_setProductCategories();
+                $this->_setCart();
+        }
+
+        protected
+        function _setProductCategories()
+        {
+                $query = \mysql_query(
+                        "SELECT * FROM categories"
+                );
+
+                $this->_map['categories'] = array();
+                while ($row = \mysql_fetch_assoc($query)) {
+                        $row['name'] = \utf8_encode($row['name']);
+                        $this->_map['categories'][] = $row;
+                }
+        }
+
+        protected
+        function _setCart()
+        {
+                $this->_map['cart'] =& $_SESSION['cart'];
+
+                $total = 0;
+                foreach ((array) $_SESSION['cart'] as $key => $product) {
+                        $total += $product['num'] * $product['price'];
+                }
+                $_SESSION['cart_total'] = $total;
+                $this->_map['cart_total'] =& $_SESSION['cart_total'];
+
+                $productsCount = 0;
+                foreach ((array) $_SESSION['cart'] as $key => $product) {
+                        $productsCount += $product['num'];
+                }
+                $this->_map['cart_products_count'] = $productsCount;
+        }
+
+        protected
+        function _useImages(array $products)
+        {
+                foreach ($products as $key => &$product) {
+                        $product['image'] = $this->_image->publicate(
+                                $product['image'],
+                                $product['image_type']
+                        );
+                }
+
+                return $products;
+        }
+}
+<?php
+
+return array(
+        'debug' => true,
+        'compression.active' => true,
+        'dbms.host' => 'localhost',
+        'dbms.db'   => 'tecweb',
+        'dbms.user' => 'tecweb',
+        'dbms.pass' => 'tecweb',
+        'img.dir'    => './pub/img/db/',
+        'img.prefix' => '/img/db/'
+);
+
+// CREATE DATABASE tecweb;
+// CREATE USER 'tecweb'@'%' IDENTIFIED BY 'tecweb';
+// GRANT ALL PRIVILEGES ON *.* TO 'tecweb'@'%' IDENTIFIED BY 'tecweb' WITH GRANT OPTION;
+<?php
+
+namespace tdw\model;
+
+class Groups extends \php\Object
+{
+        protected static $_join;
+
+        protected static
+        function _normalizeRow($row)
+        {
+                $row['name'] = \utf8_encode($row['name']);
+
+                return $row;
+        }
+
+        public static
+        function query($query)
+        {
+                $query = \mysql_query($query);
+
+                $rows = array();
+                while ($row = \mysql_fetch_assoc($query)) {
+                        $rows[] = self::_normalizeRow($row);
+                }
+
+                return $rows;
+        }
+
+        public static
+        function getAll()
+        {
+                return self::query("SELECT * FROM groups");
+        }
+
+        public static
+        function getByOperatorId($id)
+        {
+                return self::query(
+                        "SELECT g.id, g.name
+                                FROM groups AS g
+                                LEFT JOIN operators_groups AS og
+                                        ON g.id = og.group_id
+                                WHERE og.operator_id = '{$id}'"
+                );
+        }
+}
+<?php
+
+namespace tdw\model;
+
+class Products extends \php\Object
+{
+        protected static $_join =
+                "SELECT p.*, g.name AS 'category', g.id AS 'category_id'
+                        FROM products AS p
+                        LEFT JOIN products_categories AS c
+                                ON p.id = c.product_id
+                        LEFT JOIN categories AS g
+                                ON c.category_id = g.id";
+
+        protected static
+        function _normalizeRow($row)
+        {
+                $row['title'] = \utf8_encode($row['title']);
+                $row['description'] = \utf8_encode($row['description']);
+                $row['image_type'] = \substr($row['image_type'], 6);
+                $row['category'] = \utf8_encode($row['category']);
+
+                return $row;
+        }
+
+        public static
+        function query($query)
+        {
+                $query = \mysql_query($query);
+
+                $rows = array();
+                while ($row = \mysql_fetch_assoc($query)) {
+                        $rows[] = self::_normalizeRow($row);
+                }
+
+                return $rows;
+        }
+
+        public static
+        function getById($id)
+        {
+                $products = self::query(self::$_join
+                        ." WHERE p.id = '{$id}'"
+                );
+
+                return $products[0];
+        }
+
+        public static
+        function getByCategoryId($id)
+        {
+                return self::query(self::$_join
+                        ." WHERE c.category_id = {$id}"
+                );
+        }
+
+        public static
+        function getByOperatorId($id)
+        {
+                return self::query(self::$_join
+                        ." WHERE operator_id = '{$id}'
+                                ORDER BY id DESC"
+                );
+        }
+
+        public static
+        function search($query, $oid = null)
+        {
+                return self::query(self::$_join
+                        ." WHERE (
+                                title LIKE '%{$query}%'
+                                OR description LIKE '%{$query}%'
+                        )".($oid ? " AND operator_id = '{$oid}'" : '')
+                        ." ORDER BY p.id DESC"
+                );
+        }
+}
+<?php
+
+namespace tdw\model;
+
+class Operators extends \php\Object
+{
+        protected static $_join;
+
+        protected static
+        function _normalizeRow($row)
+        {
+                return $row;
+        }
+
+        public static
+        function query($query)
+        {
+                $query = \mysql_query($query);
+
+                $rows = array();
+                while ($row = \mysql_fetch_assoc($query)) {
+                        $rows[] = self::_normalizeRow($row);
+                }
+
+                return $rows;
+        }
+
+        public static
+        function getAll()
+        {
+                return self::query("SELECT id, uid FROM operators");
+        }
+
+        public static
+        function getByUid($uid)
+        {
+                $operators = self::query("SELECT * FROM operators WHERE uid = '{$uid}'");
+
+                return $operators[0];
+        }
+
+        public static
+        function getInfoById($id)
+        {
+                $operators = self::query(
+                        "SELECT o.*,
+                                i.name,
+                                i.surname,
+                                i.email,
+                                i.address,
+                                i.cap,
+                                i.city,
+                                i.province,
+                                i.state,
+                                i.telephone
+                                FROM operators AS o
+                                LEFT JOIN operators_infos AS i
+                                        ON o.id = i.operator_id
+                                WHERE o.id = '{$id}'"
+                );
+
+                return $operators[0];
+        }
+}
+<?php
+
+namespace tdw\model;
+
+class Capabilities extends \php\Object
+{
+        protected static $_join;
+
+        protected static
+        function _normalizeRow($row)
+        {
+                return $row;
+        }
+
+        public static
+        function query($query)
+        {
+                $query = \mysql_query($query);
+
+                $rows = array();
+                while ($row = \mysql_fetch_assoc($query)) {
+                        $rows[] = self::_normalizeRow($row);
+                }
+
+                return $rows;
+        }
+
+        public static
+        function getAll()
+        {
+                return self::query("SELECT * FROM capabilities");
+        }
+
+        public static
+        function getByGroupId($id)
+        {
+                return self::query(
+                        "SELECT c.id, c.name
+                                FROM capabilities AS c
+                                LEFT JOIN groups_acl AS ga
+                                        ON c.id = ga.capability_id
+                                WHERE ga.group_id = '{$id}'"
+                );
+        }
+
+        public static
+        function getByOperatorId($id)
+        {
+                return self::query(
+                        "SELECT c.name
+                                FROM operators_groups AS g
+                                LEFT JOIN groups_acl AS a
+                                        ON g.group_id = a.group_id
+                                LEFT JOIN capabilities AS c
+                                        ON a.capability_id = c.id
+                                WHERE operator_id = '{$id}'"
+                );
+        }
+}
+(function($) {
+    $(function() {
+        function bind_actions(target) {
+            $(target+' form').ajaxForm({
+                'target': target,
+                'success': function(response, status, xhr, form) {
+                    bind_actions(target);
+                }
+            });
+
+            $(target+' .link-action').bind('click', function(event) {
+                var url = $(this).attr('href');
+
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function(result, status) {
+                        $(target).html(result);
+                        bind_actions(target);
+                    }
+                });
+
+                return false;
+            });
+
+            bind_del($('.del-form'));
+        }
+
+        bind_actions('#workspace');
+
+        $(".accordion").accordion({
+            autoHeight: false,
+            collapsible: true,
+            navigation: true
+        });
+
+        var target;
+
+        $('#acl-workspace .accordion form').ajaxForm({
+            'success': function(response, status, xhr, form) {
+                //$(target).next().effect("highlight", {}, 'slow');
+                var orig = $(target).parent().css('background-color');
+                $(target).parent().animate({
+                    backgroundColor: '#FFFF78'
+                }, 'normal', 'linear'/*'swing'*/, function() {
+                    $(this).animate({
+                        backgroundColor: orig
+                    });
+                }
+                );
+            }
+        });
+
+        $('#acl-workspace .accordion input[type="checkbox"]').bind('click', function(event) {
+            target = this;
+            $(this).trigger('submit');
+        });
+
+        $('#group-view .ren-form').ajaxForm({
+            'success': function(response, status, xhr, form) {
+
+            }
+        });
+
+        function bind_del(element) {
+            element.ajaxForm({
+                'success': function(response, status, xhr, form) {
+                    var id = $('input[type="hidden"]', form).val();
+                    form.parent().parent().fadeOut('slow', function() {
+                        $(this).detach();
+                    });
+                    /*$('.center-col \
+                        form \
+                        input[name="group_id"][value="'+id+'"]').parent().fadeOut('slow', function() {
+                        $(this).detach();
+                    });*/
+                }
+            });
+        }
+
+        bind_del($('.del-form'));
+
+        $('#group-view .add-form').ajaxForm({
+            'success': function(response, status, xhr, form) {
+                form.context.reset();
+                form.parent().parent().before(response);
+                bind_del($('.del-form', form.parent().parent().prev()));
+            }
+        });
+    });
+})(jQuery);
+var introspect = function(target) {
+    var prop_list = "",
+    prop_name;
+
+    for (prop_name in target) {
+        if (typeof(target[prop_name]) != "undefined") {
+            prop_list += (prop_name + ", ");
+        }
+    }
+
+    return prop_list;
+};
+
+(function($) {
+    $(function() {
+        function bind_cart() {
+            $('#mini_shopping_cart form').ajaxForm({
+                'target': '#mini_cart',
+                'success': function(response, status, xhr, form) {
+                    bind_cart();
+                }
+            });
+
+            $('#reset-action').bind('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('href'),
+                    success: function(result, status) {
+                        $('#mini_cart').html(result);
+                        bind_cart();
+                    }
+                });
+                return false;
+            });
+
+            $('#ship-button').bind('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/cart/reset_cart/', //$(this).attr('href'),
+                    success: function(result, status) {
+                        $('#mini_cart').html(result);
+                        bind_cart();
+                        return false;
+                    }
+                });
+            });
+        }
+
+        /*$('#buyit-dialog').dialog({
+            autoOpen: false,
+            //height: 300,
+            minHeight: 0,
+            width: 250,
+            modal: true,
+            buttons: {},
+            close: function() {
+                $("#buyit-form").resetForm();
+            }
+        });*/
+
+        $('#buyit-form').ajaxForm({
+            'target': '#mini_cart',
+            'success': function(response, status, xhr, form) {
+                bind_cart();
+            }
+        });
+
+        bind_cart();
+
+        $("div.product_box_foto a").each(function(key, element) {
+            $(element).fancybox({
+                'titlePosition' : 'over',
+                'transitionIn'	: 'elastic',
+                'transitionOut'	: 'elastic',
+                'easingIn'      : 'easeOutBack',
+                'easingOut'     : 'easeInBack',
+                'speedIn'       : 500,
+                'speedOut'      : 300
+            });
+        });
+
+        $('#payment-options input').bind('click', function() {
+            var target = $(this).attr('class');
+            $('#payment-mask').html($('#'+target+'-mask').clone());
+        });
+    });
+})(jQuery);

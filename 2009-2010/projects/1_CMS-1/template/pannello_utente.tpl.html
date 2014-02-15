@@ -1,0 +1,40 @@
+{include file="header.tpl.html"}
+ 
+<h2>Pannello Utente</h2>
+<h3>Benvenuto {$username}</h3>
+{if $servizio_2}
+
+               <h3> Inserimento nuovo prodotto<a href="inserimento_prodotto.php"> <img src="./template/images/plus.png" style="border: none" width="15"/></a></h3>
+                        {/if}
+
+                        
+                       
+
+                        <table>
+
+                        {if $prodotto}
+                        <tr><td>I MIEI OGGETTI</td></tr>
+                        {foreach from=$prodotto item=prodotti}
+                        <tr><td><a href="prodotto.php?id_prodotto={$prodotti.id_prodotto}">{$prodotti.titolo}</a></td>  <td><a href="modifica.php?id_prodotto={$prodotti.id_prodotto}"><img class="ico" alt="modifica" src="./template/images/modifica.png" /></a></td> <td><a href="add_specifiche.php?id_prodotto={$prodotti.id_prodotto}"><img class="ico" alt="specifiche" src="./template/images/specifiche.gif"/></a></td></tr>
+
+                        {/foreach}
+                        {else}
+                        {if $servizio_2}
+                        Nessun hai inserito alcun prodotto
+                        {/if}
+                        {/if}
+
+                        </table>
+                     <div class="clear"></div>
+            
+           
+            <div class="clear"></div>
+          
+          <div class="clear"></div>
+           <div class="clear"></div>
+  
+ 
+
+
+
+{include file="footer.tpl.html"}

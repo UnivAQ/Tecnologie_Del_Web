@@ -1,0 +1,35 @@
+<[message::mex library="zuppiu"]>
+<form name="form_contenuto_html" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="pubblicato" value=""/>
+	<input type="hidden" name="sezioni" value=""/>
+	<input type="hidden" name="page" value="1"/>
+	<table class="forms">
+		<tr>
+			<td class="title" colspan="2">Aggiungi Contenuto HTML</td>
+		</tr>
+		<tr>
+			<td valign="top" width="75%">Titolo:<br/>
+			<input type="text" name="titolo" size="60" maxlength="125" value="<[titolo]>"/>
+			</td>
+			<td valign="top" rowspan="2" width="25%">
+			Sezioni<br/>
+			<[sezioni::elenco library="zuppiu" value="id" text="nome"]>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" width="75%">Codice HTML (max 200 KB)<br/>
+			<input type="file" name="userfile" size="60" />
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="2">
+				<button type="button" name="draft" onclick="saveAsHTMLDraft();">Salva come bozza</button>&nbsp;
+				<button type="button" onclick="publicHTMLArticle();">Pubblica</button>&nbsp;
+				<button type="reset">Cancella</button>
+			</td>
+		</tr>
+		</table>
+</form>

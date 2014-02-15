@@ -1,0 +1,253 @@
+body {
+	background-color: transparent;
+	padding: 0px;
+	margin: 0px;
+	font-family: Georgia, Arial, Helvetica;
+	font-size: 11px;
+}
+
+#wrapper {
+	background-color: transparent;
+	width: 1000px;
+	text-align: left;
+}
+
+#header {
+	height: 90px;
+	background-color: transparent;
+	background-image: url(../img/logo.gif);
+	background-repeat: no-repeat;
+	background-position: center left;
+	text-align: right;
+	vertical-align: top;
+}
+
+#menu {
+	width: 200px;
+	/*background-color: #FF0000;*/
+	float: left;
+}
+
+#content {
+	width: 790px;
+	/*background-color: #FF00FF;*/
+	float: right;
+	padding-left: 5px;
+}
+
+.menu {
+	width: 100%;
+	padding: 3px;
+	border: 1px #CCCCCC solid;
+	background-color: transparent;
+}
+
+.super {
+	font-family: Georgia, Arial, Helvetica;
+	font-size: 13px;
+	font-weight: bold;
+	color: #CC0000;
+	text-align: left;
+	vertical-align: middle;
+	background-color: #EEEEEE;
+	width: 100%;
+}
+
+.sub {
+	font-family: Georgia, Arial, Helvetica;
+	font-size: 11px;
+	color: #222222;
+	text-align: left;
+	vertical-align: middle;
+	width: 100%;
+	padding-left: 10px;
+}
+
+.sub a:link, a:active, a:visited {
+	text-decoration: none;
+	color: #222222;
+}
+
+.sub a:hover {
+	text-decoration: underline;
+	color: #CC0000;
+}
+
+.textheader {
+	font-family: Georgia, Arial, Helvetica;
+	font-size: 11px;
+	color: #222222;
+	text-align: right;
+	vertical-align: middle;
+	width: 100%;
+	padding-left: 10px;
+}
+
+.textheader a:link, a:active, a:visited {
+	text-decoration: none;
+	color: #222222;
+}
+
+.textheader a:hover {
+	text-decoration: underline;
+	color: #CC0000;
+}
+
+caption, .title {
+  padding: 5px;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #CC0000;
+  color: #FFFFFF;
+  /*cursor: normal;*/
+}
+
+.report_title {
+  padding: 5px;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #CC0000;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.welcome, .forms, .report {
+  padding: 3px;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 15px;
+  width: 100%;
+  border: 1px #CCCCCC solid;
+}
+.forms td {
+  font-size: 12px;
+  font-weight: bold;
+}
+textarea {
+  width: 100%;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: normal;
+}
+button {
+  border: 1px #CCCCCC solid;
+  background-color: #EEEEEE;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 13px;
+  padding: 3px;
+  font-weight: normal;
+}
+.other {
+  border: 1px #CCCCCC solid;
+  background-color: #EEEEEE;
+  font-family: Arial;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+#message_ok {
+  border: 1px #006600 solid;
+  background-color: #00CC00;
+  color: #FFFFFF;
+  width: 100%;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 13px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /*padding: 10px;*/
+}
+
+#message_ko {
+  border: 1px #CC0000 solid;
+  background-color: #FF9999;
+  color: #000000;
+  width: 100%;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 13px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /*padding: 10px;*/
+}
+
+#doing {
+  border: 1px #CC0000 solid;
+  background-color: #FF9999;
+  color: #000000;
+  width: 100%;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 13px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  visibility: hidden;
+  /*padding: 10px;*/
+}
+
+.filesearch {
+  width: 90%;
+  border: 1px #DDDDDD solid;
+  padding: 2px;
+}
+
+.filesearch td {
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 11px;
+  font-weight: normal;
+  color: #444444;
+  text-align: left;
+  vertical-align: middle;
+  padding: 2px;
+  background-color: #EEEEEE;
+}
+
+.filesearch td.under {
+  cursor: pointer;
+}
+
+.filesearch td.title {
+  padding: 2px;
+  font-family: Georgia, Arial, Helvetica;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: #CC0000;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+span.task {
+  font-size: 12px;
+  font-weight: bold;
+  color: #CC0000;
+  cursor: pointer;
+}
+
+.inner {
+  font-size: 12px;
+  color: #222222;
+}
+.populate {
+  width: 190px;
+}
+span {
+  font-weight: normal;
+}
+span.sections {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.smaller {
+  font-size: 10px;
+  padding-left: 10px;
+  font-weight: normal;
+}
+#file td {
+  border-top: 2px #CC0000 solid;
+  padding: 5px;
+}
+.lateralborder {
+  border-right: 1px #CCCCCC solid;
+}

@@ -1,0 +1,30 @@
+<[message::mex library="zuppiu"]>
+<form name="form_sezioni">
+<input type="hidden" name="page" value="1"/>
+<input type="hidden" name="positionList" value=""/>
+<table class="forms">
+	<tr>
+		<td class="title" colspan="2">Aggiungi Sezione</td>
+	</tr>
+	<tr>
+		<td width="80%">Nome:<br/>
+		<input type="text" name="nome" size="30" maxlength="20" onchange="updatePosition();"></td>
+		<td rowspan="3" valign="top" align="center">
+		Posizione:<br/>
+		<[posizione::positionChanger library="zuppiu" size="15" value="id"]></select>
+		</td>
+	</tr>
+	<tr>
+		<td width="80%">Descrizone:</td>
+	</tr>
+	<tr>
+		<td width="80%" valign="top"><textarea name="descrizione" rows="12"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+		<button type="button" onclick="addSection();">Salva</button>
+		<button type="reset">Cancella</button>
+		</td>
+	</tr>
+</table>
+</form>

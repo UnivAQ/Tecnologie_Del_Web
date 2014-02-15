@@ -1,0 +1,30 @@
+{include file="header.tpl.html"}
+
+
+<div class="tunesBox">
+    <h1>Hi Tech Review</h1>
+    
+    <span class="boldText"> Ricerca i prodotti caricati nel sito:</span><br /><br />
+<form action="ricerca.php" method="post" id="ricerca">
+    <input type="text" name="q">
+    <input type="submit" value="Cerca!">
+</form> </div>
+<div class="rightCd"> <img src="./template/images/sd.jpg" alt="s" /> </div>
+<div class="clear"></div>
+<div class="rightBox2">
+    <br/>
+    <h1>Alcuni Prodotti:</h1>
+    <div class="productContainer">
+        {if $oggetti}
+{foreach from=$oggetti item=oggetto}
+<div class="pic1"><img src="img.php?id={$oggetto.id_prodotto}" alt="s" width="100" />
+    <div class="picText1"><strong><a href="prodotto.php?id_prodotto={$oggetto.id_prodotto}">{$oggetto.titolo}</a></strong></div>
+            {$oggetto.descrizione}...
+        </div>
+       {/foreach}
+{/if}
+    </div>
+    <div class="clear"></div>
+</div>
+
+{include file="footer.tpl.html"}

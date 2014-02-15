@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="IngWeb" default="default" basedir=".">
+    <description>Setup the environment of the TecWeb project.</description>
+
+    <fail message="Please build using Ant 1.8.0 or higher.">
+        <condition>
+            <not>
+                <antversion atleast="1.8.0"/>
+            </not>
+        </condition>
+    </fail>
+
+    <!--<property file="prop.properties"/>-->
+
+    <property name="cache" value="${basedir}/.project/nbproject/cache"/>
+    <property name="pub" value="${basedir}/pub"/>
+
+    <target name="default" depends="setup"/>
+
+    <target name="-init">
+        <available file="${basedir}/.project/nbproject/" property="-nbproject-exists"/>
+    </target>
+
+    <target name="-setup-nbproject" depends="-init" unless="-nbproject-exists">
+        <copy todir="${basedir}/.project/nbproject">
+            <fileset dir="${basedir}/.project/.nbproject-skel"/>
+        </copy>
+    </target>
+
+    <target name="setup" depends="-setup-nbproject">
+        <mkdir dir="${cache}"/>
+        <mkdir dir="${pub}"/>
+        <mkdir dir="${pub}/css"/>
+        <mkdir dir="${pub}/css/images"/>
+        <mkdir dir="${pub}/js"/>
+
+        <copy file="${basedir}/lan_tdw_www.htaccess" tofile="${pub}/.htaccess" overwrite="true"/>
+        <copy file="${basedir}/index.php" todir="${pub}" overwrite="true"/>
+
+        <!-- Smarty { -->
+        <property name="smarty-release" value="Smarty-2.6.26"/> <!-- Smarty-3.0rc2 -->
+        <get dest="${cache}" src="http://www.smarty.net/distributions/${smarty-release}.tar.gz" verbose="true" skipexisting="true"/>
+        <gunzip src="${cache}/${smarty-release}.tar.gz" dest="${cache}"/>
+        <untar src="${cache}/${smarty-release}.tar" dest="${cache}"/>
+        <move file="${cache}/${smarty-release}/libs" tofile="${basedir}/res/libs/Smarty"/>
+        <delete file="${cache}/${smarty-release}.tar"/>
+        <delete dir="${cache}/${smarty-release}"/>
+        <!-- Smarty } -->
+
+        <!-- Zend Framework {
+        <property name="zf-release" value="ZendFramework-1.10.5-minimal"/>
+        <get dest="${cache}" src="http://framework.zend.com/releases/ZendFramework-1.10.5/${zf-release}.tar.gz" verbose="true" skipexisting="true"/>
+        <gunzip src="${cache}/${zf-release}.tar.gz" dest="${cache}"/>
+        <untar src="${cache}/${zf-release}.tar" dest="${cache}">
+            <patternset>
+                <exclude name="**/*.txt"/>
+            </patternset>
+        </untar>
+        <move file="${cache}/${zf-release}/library/Zend" todir="${basedir}/res/libs"/>
+        <delete file="${cache}/${zf-release}.tar"/>
+        <delete dir="${cache}/${zf-release}"/>
+        <!-.- Zend Framework } -->
+
+        <get dest="${pub}/js/jquery.js" src="http://code.jquery.com/jquery-1.4.2.min.js" verbose="true" skipexisting="true"/>
+
+        <get dest="${pub}/js/jquery.validate.js" src="http://bassistance-plugins.googlecode.com/svn/tags/plugins/validate/1.7/jquery.validate.pack.js" verbose="true" skipexisting="true"/>
+
+        <get dest="${pub}/js/jquery.validate-ext.js" src="http://bassistance-plugins.googlecode.com/svn/tags/plugins/validate/1.7/additional-methods.js" verbose="true" skipexisting="true"/>
+
+        <get dest="${pub}/js/jquery.form.js" src="http://github.com/malsup/form/raw/master/jquery.form.js?v2.43" verbose="true" skipexisting="true"/>
+
+        <!-- FancyBox { -->
+        <property name="fancybox-release" value="jquery.fancybox-1.3.1"/>
+        <get dest="${cache}" src="http://fancybox.googlecode.com/files/${fancybox-release}.zip" verbose="true" skipexisting="true"/>
+        <unzip src="${cache}/${fancybox-release}.zip" dest="${cache}"/>
+        <move file="${cache}/${fancybox-release}/fancybox/${fancybox-release}.js" tofile="${pub}/js/jquery.fancybox.js"/>
+        <move file="${cache}/${fancybox-release}/fancybox/${fancybox-release}.css" tofile="${pub}/css/images/jquery.fancybox.css"/>
+        <move todir="${pub}/css/images/">
+            <fileset dir="${cache}/${fancybox-release}/fancybox">
+                <include name="*.png"/>
+                <include name="*.gif"/>
+            </fileset>
+        </move>
+        <delete dir="${cache}/${fancybox-release}"/>
+        <!-- FancyBox } -->
+
+        <!-- jQuery UI { -->
+        <get dest="${pub}/js/jquery-ui.js" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/jquery-ui.css" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/redmond/jquery-ui.css" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-anim_basic_16x16.gif" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_flat_0_aaaaaa_40x100.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_flat_55_fbec88_40x100.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_glass_75_d0e5f5_1x400.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_glass_85_dfeffc_1x400.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_glass_95_fef1ec_1x400.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_inset-hard_100_f5f8f9_1x100.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-bg_inset-hard_100_fcfdfd_1x100.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_217bc0_256x240.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_2e83ff_256x240.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_469bdd_256x240.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_6da8d5_256x240.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_cd0a0a_256x240.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_d8e7f3_256x240.png" verbose="true" skipexisting="true"/>
+        <get dest="${pub}/css/images/" src="http://jquery-ui.googlecode.com/svn/tags/1.8.2/themes/redmond/images/ui-icons_f9bd01_256x240.png" verbose="true" skipexisting="true"/>
+        <!-- jQuery UI } -->
+    </target>
+</project>

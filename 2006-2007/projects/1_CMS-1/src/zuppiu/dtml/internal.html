@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Prova</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script type="text/javascript" language="javascript" src="js/style.js"></script>
+<script type="text/javascript" language="javascript" src="js/actions.js"></script>
+</head>
+<body>
+
+<center>
+
+<div id="wrapper">
+	<div id="header""><[servicetitle]><br/><span class="description"><[description]></span></div>
+	
+	<div id="menu">
+		<br/>
+		<[sezioni::menu library="zuppiu" action="section"]>
+		<br/>
+		<[admin]>
+	</div>
+	
+	<div id="content_internal">
+	<[contenuto::article library="zuppiutext"]>
+	</div>
+	<div id="sottosezioni">
+		<br/>
+		<[navigate]>
+		<br/>
+		<[sottosezioni::menu library="zuppiu" action="subsection"]>
+		<br/>
+		<[link::menu library="zuppiu" type="link"]>
+	</div>
+</div>
+</center>
+</body>
+</html>

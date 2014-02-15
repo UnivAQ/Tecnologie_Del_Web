@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>HI-TECH REVIEW</title>
+        <link href="/template/style/style.css" rel="stylesheet" type="text/css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="headerzone">
+                <div class="header">
+                    <div class="headerText">HI-TECH REVIEW</div>
+                    <div class="login">
+                        {if $logged}
+
+                        Benvenuto {$username}<br />
+                        <a class="img" href="/pannello_utente.php"><img align="middle" src="/template/images/pannello_utente.png" class="ico" alt="pannello"/></a>
+                        {if $admin}
+                        &nbsp;<a class="img" href="/admin/index.php" ><img align="middle" src="/template/images/admin.png" class="ico" alt="pannello"/></a>
+                        {/if}
+                        &nbsp;<a class="img" href="/logout.php"><img  align="middle" src="/template/images/logout.png" class="ico" alt="logout"/></a>
+                        {else}
+                        <form method="post" action="login.php">
+                            <input type="text" name="username" />
+                            <input type="password" name="password" />
+                            <input type="submit" name="op" value="LOGIN"  class="form-submit" />
+                        </form>
+                        {/if}
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="topmenu">
+                    <ul>
+                       <li><a href="/index.php">Home</a></li>
+
+                        <li><a href="/categorie.php">Categorie</a></li>
+                        <li><a href="/registrazione.php?tipo=1">Registrazione Utente</a></li>
+                        <li><a href="/registrazione.php?tipo=2">Registrazione Aziende</a></li>
+
+                        <li><a href="/ricerca.php">Ricerca</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="workZone">
+                <div class="midBox">
+                    <div class="topBox">
+                        <div class="bottomBox">
+                            <div class="leftBox">
+                               <div class="box1">
+                                    <h2>CATEGORIE</h2>
+                                    <script language="javascript" src="../menu.php"></script>
+
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+                            <div class="workZoneRight">
+                                <div class="rightBox inner">
+                                    
+                                    {if $servizi}
+                                    <div align="center"  style="font-size: 15px;"><b>AGGIUNGI SERVIZI A GRUPPI</b></div><br /><br />
+                                    <table>
+                                        <tr>
+                                            <td></td>
+                                            <td>Inserimento prodotti</td>
+                                            <td>Rilascio rating prodotti</td>
+                                            <td>Rilascio feedback</td>
+                                            <td>Rilascio rating feedback</td>
+                                            <td>Modifica prodotti</td>
+                                            <td>Rimozione commenti</td>
+                                            <td>Rimozione prodotti</td>
+                                            <td></td>
+                                        </tr>
+                                        {foreach key=key from=$servizi item=gruppo}
+                                        <form method="post" action="">
+                                            <input type="hidden" name="mod_servizi"/>
+                                                <input type="hidden" name="id_gruppo" value="{$gruppo.id_gruppo}"/>
+                                                    <tr>
+                                                        <td><b style="font-size:13px;">{$gruppo.nome}</b></td>
+                                                        <td><input type="checkbox" size=1 name="2" {if $gruppo[2]} checked="checked"{/if}/></td>
+                                                        <td><input type="checkbox" size=1 name="3" {if $gruppo[3]} checked="checked"{/if}/></td>
+                                                        <td><input type="checkbox" size=1 name="4" {if $gruppo[4]} checked="checked"{/if}/></td>
+                                                        <td><input type="checkbox" size=1 name="5" {if $gruppo[5]} checked="checked"{/if}/></td>
+                                                        <td><input type="checkbox" size=1 name="6" {if $gruppo[6]} checked="checked"{/if}/></td>
+                                                        <td><input type="checkbox" size=1 name="7" {if $gruppo[7]} checked="checked"{/if}/></td>
+                                                        <td><input type="checkbox" size=1 name="8" {if $gruppo[8]} checked="checked"{/if}/></td>
+                                                        <td><input type="submit" value="Salva"/></td>
+                                                    </tr>
+                                                    </form>
+                                                    {/foreach}
+                                                    </table>
+                                                    {else}
+                                                    <b>Nessun gruppo presente</b><br /><br />
+                                                    {/if}
+                                                    <br />
+                                                    <b>Aggiungi gruppo</b> <form method="post" action=""><input type="hidden" name="add_gruppo"/>
+                                                        <input type="text" name="nome"/>
+                                                        <input type="submit" value="Aggiungi"/>
+                                                    </form>
+
+                                                    <hr />
+                                                    <br />
+                                                    <div align="center" style="font-size:15px;"><b>ASSOCIA UTENTI A GRUPPI</b></div><br />
+                                                    <br />
+                                                    
+                                                    <table>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Lista gruppi utente</td>
+                                                            <td></td>
+                                                            <td>&nbsp;</td>
+                                                            <td>Aggiungi gruppo</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        {foreach from=$utenti item=utente}
+                                                        <tr>
+
+                                                            <td><b style="font-size:13px;">{$utente.username}</b></td>
+                                                            <td>
+                                                                <form method="post" action="">
+                                                                    <input type="hidden" name="del_gruppo_utente"/>
+                                                                    <input type="hidden" name="id_utente" value="{$utente.id_utente}"/>
+                                                                    <select name="id_gruppo">
+                                                                        {foreach from=$utente.gruppi item=gruppi_utente}
+                                                                        <option value="{$gruppi_utente.id_gruppo}">{$gruppi_utente.nome_gruppo}</option>
+                                                                        {/foreach}
+                                                                    </select>
+
+                                                            </td>
+                                                            <td><input type="submit" value="CANCELLA!"/></td>
+                                                            </form>
+                                                            <td></td>
+                                                            <td>
+                                                                <form method="post"  action="">
+                                                                    <input type="hidden" name="add_gruppo_utente"/>
+                                                                    <input type="hidden" name="id_utente" value="{$utente.id_utente}"/>
+                                                                    <select name="id_gruppo">
+                                                                        {foreach from=$gruppi item=gruppo}
+                                                                        <option value="{$gruppo.id_gruppo}">{$gruppo.nome_gruppo}</option>
+                                                                        {/foreach}
+                                                                    </select>
+
+
+                                                            </td>
+                                                            <td><input type="submit" value="AGGIUNGI!"></td>
+                                                            </form>
+                                                        </tr>
+                                                        {/foreach}
+                                                    </table>
+                                                    <br />
+                                                    <hr />
+                                                    <br />
+                                                        <div align="center" style="font-size:15px;"><b>GESTISCI CATEGORIE</b> </div><br />
+                                                            {foreach from=$macrocategorie item=macrocategoria}
+                                                        
+                                                            <b style="font-size:13px;">+&nbsp;{$macrocategoria.nome_macrocategoria}</b><a href="index.php?del_macro&id_macrocategoria={$macrocategoria.id_macrocategoria}"><img width="20" height="20" style="border-style: none" alt="delete" src="/template/images/delete.png" /></a><br />
+                                                                {foreach from=$macrocategoria.sotto item=item}
+                                                                &nbsp; - &nbsp;{$item.nome_categoria}<a href="index.php?del_cat&id_categoria={$item.id_categoria}"><img width="15" height="15" style="border-style: none" alt="delete" src="/template/images/delete.png" /></a><br />
+                                                                
+                                                                {/foreach}
+                                                        
+                                                        <form method="post" action="">
+                                                            <input type="hidden" name="add_cat"/>
+                                                            <input type="hidden" name="id_macrocategoria" value="{$macrocategoria.id_macrocategoria}"/><br />
+                                                            <input name="nome_categoria"/>
+                                                            <input type="submit" value="Aggiungi"/>
+                                                        </form><br /><br />
+                                                        {/foreach}
+                                                        <hr />
+                                                        <br />
+                                                        <div align="center" style="font-size:15px;"<b>AGGIUNGI MACROCATEGORIE</b></div><br/><br />
+                                                        <form method="post" action="">
+                                                            <input type="hidden" name="add_macro"/>
+                                                            <input name="nome_macrocategoria"/>
+                                                            <input type="submit" value="Aggiungi"/>
+                                                        </form>
+
+
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        </div>
+                                                        <div class="footer">
+                                                            <ul style="color:#FFF;">
+                                                                <li> Copyright (c) Hi-Tech Review All rights reserved. Design by hitechreview.com.</li>
+                                                            </ul>
+                                                        </div>
+                                                        </div>
+                                                        </body>
+                                                        </html>

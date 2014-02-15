@@ -1,0 +1,240 @@
+@media screen {
+    div#site_container {
+        background:url("/img/bg_site_clear.png") repeat-y scroll left top #FFFFFF;
+    }
+
+    div#content {
+        width:790px;
+    }
+
+    #workspace {
+        margin-right: 10px;
+        font-family: verdana, arial, sans-serif;
+        font-size: 12px;
+    }
+
+    div#footer {
+        background: url("/img/bg_footer_clear.jpg") no-repeat scroll center #9CA546;
+    }
+
+    #products-grid {
+        width: 100%;
+        font-family: verdana, arial, sans-serif;
+        font-size: 12px;
+    }
+
+    #products-grid caption {
+        margin-bottom: 0.2em;
+    }
+
+    #categories-grid {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #admin-products-radios {
+        border: 1px solid gray;
+        padding: 10px 10px 10px 10px;
+    }
+
+    #admin-products-radios input {
+        margin-left: 10px;
+    }
+
+    #admin-products-inputs {
+        padding: 15px 0 5px 15px;
+        border: 1px solid gray;
+    }
+
+    #admin-products-inputs label {
+        display: block;
+        margin: 0 0 5px 0;
+    }
+
+    #admin-products-inputs textarea {
+        font-family: verdana, arial, sans-serif;
+        font-size: 12px;
+        background-color: white;
+        width: 75%;
+        height: 150px;
+        padding: 2px 2px 2px 2px;
+        margin-bottom: 10px;
+    }
+
+    #admin-products-inputs input {
+        display: block;
+        width: 75%;
+        padding: 2px 2px 2px 2px;
+        margin-bottom: 15px;
+    }
+
+    #admin-products-inputs input[type="file"] {
+        margin-left: -2px;
+    }
+
+    #admin-products-inputs .left-col {
+        width: 70%;
+        float: left;
+    }
+
+    #admin-products-inputs .right-col img {
+        width: 12em;
+    }
+
+    .ui-button {
+        font-size: 0.6em;
+    }
+
+    #section-menu ul li {
+        display: inline;
+        /*text-transform: lowercase;*/
+    }
+
+    button.delete-action img {
+        height: 1em;
+    }
+
+    button#clear-form {
+        padding-right: 9px;
+        padding-left: 9px;
+        margin-bottom: 10px;
+    }
+
+    button.save-action {
+        padding: 3px 20px 3px 20px;
+    }
+
+    button.save-action img {
+        height: 1em;
+        margin-right: 3px;
+    }
+
+    .admin-actions {
+        margin-top: 10px;
+    }
+
+    #workspace th {
+        padding-bottom: 5px;
+    }
+
+    #workspace th.title-cell {
+        width: 20%;
+    }
+
+    #workspace td {
+        padding: 5px 2px 5px 2px;
+    }
+
+    #workspace .category-cell {
+        text-align: center;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #workspace td.price-cell {
+        text-align: right;
+    }
+
+    #workspace table {
+        border-collapse: collapse;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color:#eee;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color:#fff;
+    }
+
+    #workspace tbody {
+        border: 1px dashed gray;
+    }
+
+    #tasks > div {
+        text-align: left;
+    }
+
+    #tasks {
+        margin-bottom: 20px;
+    }
+
+    div#content {
+        padding: 10px 0 0 10px;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    #section-menu button {
+        float: right;
+        margin: 2px 60px 0 0;
+        
+    }
+
+    #acl-workspace .left-col {
+        float: left;
+        width: 20%;
+        margin-right: 1%;
+    }
+
+    #acl-workspace .center-col {
+        float: left;
+        width: 35%;
+        margin-right: 1%;
+    }
+
+    #acl-workspace .right-col {
+        float: left;
+        width: 35%;
+    }
+
+    #group-view form {
+        border-radius: 1em;
+    }
+
+    #group-view table {
+        border-width: 1px;
+        border-style: solid;
+        border-color: gray;
+        border-radius: 0.2em;
+    }
+
+    #group-view input[type="input"] {
+        width: 10em;
+    }
+    
+    #group-view .ren-form {
+        float: left;
+    }
+
+    #group-view .del-form {
+        float: right;
+    }
+
+    .hoverable .hidden {
+        margin-right: 1%;
+        height: 14pt;
+        /*display: none;*/
+        visibility: hidden;
+    }
+
+    .hoverable:hover .hidden {
+        /*display: block;*/
+        visibility: visible;
+    }
+
+    #categories-grid tbody form {
+        display: inline;
+    }
+
+    #categories-grid tbody input {
+        float: right;
+    }
+}

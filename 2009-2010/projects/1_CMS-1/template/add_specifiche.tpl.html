@@ -1,0 +1,38 @@
+{include file="header.tpl.html"}
+{literal}
+<script type="text/javascript">
+var counter = 1;
+function addInput(divName){
+
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "<input type='text' name='denominazione[]'> Denominazione<br /> <input type='text' name='valore[]'> Valore<br /><br />";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+}
+</script>
+{/literal}
+<a href="prodotto.php?id_prodotto={$id}">< Torna al prodotto</a><br /><br />
+<b>AGGIUNGI SPECIFICHE</b><br /><br />
+<form method="POST" action="">
+    <input type="hidden" name="save" value="1"/>
+    <input type="hidden" name="id_prodotto" value="{$id_prodotto}"/>
+    <div id="dynamicInput">
+    <input type="text" name="denominazione[]"/> Denominazione<br /> <input type="text" name="valore[]"/> Valore<br /><br />
+    </div><br />
+    <input type="button" value="Aggiungi un altro input" onClick="addInput('dynamicInput');"/>
+    <input type="submit" value="Via!"/>
+    </form>
+
+<br /><br /><b>LISTA SPECIFICHE</b><br /><br /><br />
+<table>
+{if $spec}
+{foreach from=$spec item=specifiche}
+
+    <tr><td>{$specifiche.denominazione}:</td> <td>{$specifiche.valore}</td> <td><a class="img" href="?id_prodotto={$id_prodotto}&delete&id_specifica={$specifiche.id_specifica}"><img class="ico" alt="delete" src="./template/images/delete.png" /></a></td></tr>
+
+{/foreach}
+{else}
+Nessun hai inserito alcuna specifica
+{/if}
+</table>
+{include file="footer.tpl.html"}

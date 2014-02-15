@@ -1,0 +1,11 @@
+{include file="header.tpl.html"}
+
+<h2>Macrocategoria</h2><br/>
+<b>{$macro.nome_macrocategoria}</b><br>
+{foreach from=$macro.categorie item=categoria}
+<a href="sottocategorie.php?id_categoria={$categoria.id_categoria}">{$categoria.nome_categoria}</a><br>
+  {/foreach}
+  <br>
+
+
+{include file="footer.tpl.html"}

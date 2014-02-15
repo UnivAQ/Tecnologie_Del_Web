@@ -1,0 +1,274 @@
+body {
+  font-family: Tahoma;
+  font-size: 12px;
+  color: #222222;
+  margin: 0px;
+}
+
+#wrapper {
+  width: 900px;
+  background-color: white;
+}
+
+#header {
+  width: 900px;
+  height: 90px;
+  background-color: #CCCCCC;
+  background-image: url(../img/header.gif);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  text-align: left;
+  font-family: Trebuchet MS, Lucida Console, Arial, Helvetica;
+  font-size: 50px;
+  font-weight: bold;
+  color: #CC0000;
+  letter-spacing: -2px;
+  font-variant: small-caps;
+}
+
+.description {
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 5px;
+  color: inherit;
+  /*font-variant: normal;*/
+}
+
+#menu {
+  width: 170px;
+  top: 0px;
+  float: left;
+  text-align: left;
+}
+
+#content {
+  width: 670px;
+  position: absolute;
+  top: 0px;
+  float: left;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sidemenu {
+  padding: 2px;
+  margin: 0px;
+  font-family: Trebuchet MS;
+  font-size: 11px;
+  font-weight: bold;
+  color: #CC0000;
+  width: 100%;
+  cursor: pointer;
+  border: 1px #CCCCCC solid;
+}
+
+.sidemenu td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+#sidemenu {
+  width: 150px;
+}
+
+#content_internal {
+  width: 545px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  text-align: left;
+  padding: 5px;
+  float: left;
+  background-color: transparent;
+}
+
+#sottosezioni {
+  width: 170px;
+  position: relative;
+  float: right;
+  text-align: left;
+}
+
+caption {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #CC0000;
+  color: #FFFFFF;
+  /*cursor: normal;*/
+}
+
+.login {
+  font-family: Trebuchet MS;
+  font-size: 11px;
+  font-weight: bold;
+  color: #444444;
+  border: 1px #CCCCCC solid;
+  padding: 2px;
+  width: 148px;
+}
+.login td {
+  text-align: left;
+}
+button {
+  border: 1px #CCCCCC solid;
+  background-color: #EEEEEE;
+  font-family: Arial;
+  font-size: 11px;
+  font-weight: bold;
+}
+input.login {
+  border: 1px #CCCCCC solid;
+  font-family: Arial;
+  font-size: 11px;
+  font-weight: normal;
+  width: 130px;
+}
+td.press {
+  text-align: right;
+}
+
+/* LAYOUT */
+.contenuti {
+  width: 100%;
+}
+.titolo {
+  font-family: Trebuchet MS;
+  font-size: 18px;
+  font-weight: bold;
+  color: #CC0000;
+  text-align: left;
+}
+
+.titolo a:link, .titolo a:visited, .titolo a:active {
+  text-decoration: none;
+  color: #CC0000;
+}
+
+.titolo a:hover {
+  text-decoration: none;
+  color: #EE0000;
+}
+
+.testo {
+  font-family: Trebuchet MS;
+  font-size: 12px;
+  font-weight: normal;
+  color: #555555;
+  text-align: justify;
+}
+
+.testo a:link, .testo a:visited, .testo a:active {
+  text-decoration: none;
+  color: #CC0000;
+}
+
+.testo a:hover {
+  text-decoration: none;
+  color: #EE0000;
+}
+
+.didascalia {
+  font-family: Trebuchet MS;
+  font-size: 10px;
+  font-weight: normal;
+  color: #222222;
+  text-align: left;
+}
+
+.commento {
+  font-family: Trebuchet MS;
+  font-size: 11px;
+  font-weight: normal;
+  color: #CC0000;
+  text-align: right;
+}
+
+.commento a:link, .commento a:visited, .commento a:active {
+  color: #CC0000;
+  text-decoration: underline;
+}
+
+.commento a:hover {
+  color: #EE0000;
+  text-decoration: none;
+}
+
+.filelist {
+  text-align: left;
+  font-family: Trebuchet MS;
+  font-size: 13px;
+  font-weight: bold;
+  color: #CC0000;
+}
+
+.filelist a:link, .filelist a:visited, .filelist a:active {
+  font-size: 11px;
+  font-weight: normal;
+  color: #CC0000;
+  text-decoration: none;
+}
+
+.filelist a:hover {
+  font-size: 11px;
+  font-weight: normal;
+  color: #EE0000;
+  text-decoration: none;
+}
+
+.filelist ul {
+  color: #222222;
+  padding-left: 25px;
+  margin: 0px;
+}
+
+/* Commenti */
+table.commenti {
+  width: 90%;
+}
+
+table.commenti td {
+  font-family: Trebuchet Ms;
+  font-size: 11px;
+  font-weight: bold;
+  color: #555555;
+}
+
+table.commenti input {
+  font-family: Tahoma;
+  font-size: 11px;
+  font-weight: normal;
+  color: #222222;
+}
+
+table.usercomment {
+  font-family: Trebuchet MS;
+  padding: 2px;
+  width: 90%;
+}
+
+table.usercomment th, .thcomments {
+  text-align: left;
+  font-family: Trebuchet MS;
+  font-size: 13px;
+  font-weight: bold;
+  color: #CC0000;
+  background-color: #EEEEEE;
+}
+
+table.usercomment td {
+  font-size: 11px;
+  color: #222222;
+}
+
+table.usercomment a:link, table.usercomment a:visited, table.usercomment a:active {
+  text-decoration: none;
+  color: #CC0000;
+}
+
+table.usercomment a:hover {
+  text-decoration: underline;
+  color: #CC0000;
+}

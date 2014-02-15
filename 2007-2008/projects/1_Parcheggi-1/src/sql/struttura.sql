@@ -1,0 +1,167 @@
+ 
+CREATE TABLE Gruppo (
+  id			INT NOT NULL AUTO_INCREMENT,
+  nome			VARCHAR(50) NOT NULL,
+  
+  PRIMARY KEY(id),
+  UNIQUE(nome)
+) ENGINE=InnoDB;
+
+CREATE TABLE Indirizzo (
+  id			INT NOT NULL AUTO_INCREMENT,
+  via			VARCHAR(100) NOT NULL,
+  n_civico		VARCHAR(10) NOT NULL,
+  comune		VARCHAR(100) NOT NULL,
+  provincia		CHAR(2) NOT NULL,
+  cap			CHAR(5) NOT NULL,
+  lat			FLOAT DEFAULT 0,
+  lon			FLOAT DEFAULT 0,
+  
+  PRIMARY KEY(id),
+  UNIQUE(via, n_civico, cap)
+) ENGINE=InnoDB;
+  
+CREATE TABLE Modello (
+  id			INT NOT NULL AUTO_INCREMENT,
+  larghezza		FLOAT NOT NULL,
+  lunghezza		FLOAT NOT NULL,
+  altezza		FLOAT NOT NULL,
+  marca			VARCHAR(100) NOT NULL,
+  nome			VARCHAR(100) NOT NULL,
+    
+  PRIMARY KEY(id),
+  UNIQUE(marca, nome)
+) ENGINE=InnoDB;
+  
+CREATE TABLE Utente (
+  id			INT NOT NULL AUTO_INCREMENT,
+  nome			VARCHAR(100) NOT NULL,
+  cognome		VARCHAR(100) NOT NULL,
+  d_nascita		DATE NOT NULL,
+  l_nascita		VARCHAR(100) NOT NULL,
+  username		VARCHAR(25) NOT NULL,
+  password		CHAR(32) NOT NULL,
+  email			VARCHAR(100) NOT NULL,
+  id_indirizzo		INT NOT NULL,
+    
+  PRIMARY KEY(id),
+  UNIQUE(username),
+  FOREIGN KEY(id_indirizzo) REFERENCES Indirizzo(id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Automezzo (
+  id			INT NOT NULL AUTO_INCREMENT,
+  targa			VARCHAR(10) NOT NULL,
+  id_modello		INT NOT NULL,
+  id_utente		INT NOT NULL,
+    
+  PRIMARY KEY(id),
+  UNIQUE(targa),
+  FOREIGN KEY(id_modello) REFERENCES Modello(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(id_utente) REFERENCES Utente(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Annuncio (
+  id			INT NOT NULL AUTO_INCREMENT,
+  titolo		VARCHAR(150) NOT NULL,
+  corpo			TEXT,
+  data			DATETIME NOT NULL,
+  id_utente		INT NOT NULL,
+  moderato		BOOL NOT NULL DEFAULT true,
+      
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_utente) REFERENCES Utente(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+    
+CREATE TABLE Carta_Credito (
+  id			INT NOT NULL AUTO_INCREMENT,
+  tipo			VARCHAR(20) NOT NULL,
+  numero		VARCHAR(50) NOT NULL,
+  c_sic			VARCHAR(10),
+  intestatario		VARCHAR(100) NOT NULL,
+  id_utente		INT NOT NULL,
+  
+  PRIMARY KEY(id),
+  UNIQUE(numero),
+  FOREIGN KEY(id_utente) REFERENCES Utente(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Messaggio (
+  id			INT NOT NULL AUTO_INCREMENT,
+  titolo		VARCHAR(150) NOT NULL,
+  corpo			TEXT,
+  data			DATETIME NOT NULL,
+  id_mittente		INT NOT NULL,
+  id_destinatario	INT NOT NULL,
+  letto			BOOL NOT NULL DEFAULT false,
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_mittente) REFERENCES Utente(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY(id_destinatario) REFERENCES Utente(id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Parcheggio (
+  id			INT NOT NULL AUTO_INCREMENT,
+  nome			VARCHAR(150) NOT NULL,
+  id_indirizzo		INT NOT NULL,
+  id_utente		INT NOT NULL,
+  
+  PRIMARY KEY(id),
+  UNIQUE(nome, id_indirizzo),
+  FOREIGN KEY(id_indirizzo) REFERENCES Indirizzo(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY(id_utente) REFERENCES Utente(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Posto_Auto (
+  id			INT NOT NULL AUTO_INCREMENT,
+  totale		INT UNSIGNED NOT NULL,
+  larghezza		FLOAT NOT NULL,
+  lunghezza		FLOAT NOT NULL,
+  altezza		FLOAT NOT NULL,
+  tariffa_oraria	FLOAT,
+  id_parcheggio		INT NOT NULL,
+  
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_parcheggio) REFERENCES Parcheggio(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE R12 (
+  id			INT NOT NULL AUTO_INCREMENT,
+  id_utente		INT NOT NULL,
+  id_parcheggio		INT NOT NULL,
+  
+  PRIMARY KEY(id),
+  UNIQUE(id_utente, id_parcheggio),
+  FOREIGN KEY(id_utente) REFERENCES Utente(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(id_parcheggio) REFERENCES Parcheggio(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE R10 (
+  id			INT NOT NULL AUTO_INCREMENT,
+  arrivo		DATETIME NOT NULL,
+  partenza		DATETIME NOT NULL,
+  id_automezzo		INT NOT NULL,
+  id_posto_auto		INT NOT NULL,
+  
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_automezzo) REFERENCES Automezzo(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(id_posto_auto) REFERENCES Posto_Auto(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CHECK (arrivo < partenza)
+) ENGINE=InnoDB;
+
+CREATE TABLE R1 (
+  id_utente		INT NOT NULL,
+  id_gruppo		INT NOT NULL,
+  
+  PRIMARY KEY(id_utente, id_gruppo),
+  FOREIGN KEY(id_utente) REFERENCES Utente(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(id_gruppo) REFERENCES Gruppo(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Permesso (
+  t_name		VARCHAR(20) NOT NULL,
+  permesso		TINYINT NOT NULL,
+  id_gruppo		INT NOT NULL,
+  
+  PRIMARY KEY(t_name, id_gruppo),
+  FOREIGN KEY(id_gruppo) REFERENCES Gruppo(id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB;

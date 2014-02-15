@@ -1,0 +1,112 @@
+Tecnologie Del Web - 2007/2008
+
+Alessio 'isazi' Sclocco <alessio.sclocco[@]gmail[.]com>
+Alfredo Aiello <stuzzo[@]gmail[.]com>
+
+Requisiti del progetto:
+
+    Amministratore
+
+    * Prendere visione della lista degli utenti registrati
+    * Prendere visione dei dati di un utente registrato
+    * Cancellare un utente registrato
+          o Conferma dell'operazione in js
+    * Prendere visione della lista degli automezzi
+    * Prendere visione dei dati di un automezzo
+    * Cancellare un automezzo
+          o Conferma dell'operazione in js
+    * Prendere visione della lista dei parcheggi
+    * Prendere visione dei dati di un parcheggio
+    * Cancellare un parcheggio
+          o Conferma dell'operazione in js
+    * Visualizzare la lista degli annunci
+    * Approvare un annuncio
+    * Cancellare un annuncio
+          o Conferma dell'operazione in js
+    * Aggiungere un gruppo
+    * Modificare un gruppo
+          o Conferma dell'operazione in js
+    * Prendere visione della lista dei gruppi
+    * Cancellare un gruppo
+          o Conferma dell'operazione in js
+    * Prendere visione degli utenti in un gruppo
+    * Aggiungere un utente ad un gruppo
+    * Rimuovere un utente da un gruppo
+          o Conferma dell'operazione in js
+
+    Gestore di parcheggi
+
+    * Aggiungere un parcheggio
+          o Fare controlli javascript sui campi
+    * Visualizzare una lista dei propri parcheggi
+    * Modificare i dati di uno dei propri parcheggi
+          o Fare controlli javascript sui campi
+          o Conferma dell'operazione in js
+    * Cancellare uno dei propri parcheggi
+          o Conferma dell'operazione in js
+    * Aggiungere un annuncio
+          o Fare controlli javascript sui campi
+    * Visualizzare una lista dei propri annunci
+    * Eliminare un annuncio
+          o Conferma dell'operazione in js
+    * Aggiungere un posto auto ad un parcheggio
+          o Fare controlli javascript sui campi
+          o Conferma dell'operazione in js
+    * Prendere visione della lista dei posti di un parcheggio
+    * Modificare un posto auto
+          o Fare controlli javascript sui campi
+          o Conferma dell'operazione in js
+    * Eliminare un posto da un parcheggio
+          o Conferma dell'operazione in js
+
+    Utente registrato
+
+    * Modificare i dati del proprio account
+          o Fare controlli javascript sui campi
+          o Conferma dell'operazione in js
+    * Eliminare il proprio account dal sistema
+          o Conferma dell'operazione in js
+    * Aggiungere un autoveicolo
+          o Fare controlli javascript sui campi
+    * Visualizzare una lista dei propri automezzi
+    * Modificare i dati del proprio autoveicolo
+          o Fare controlli javascript sui campi
+          o Conferma dell'operazione in js
+    * Cancellare uno dei propri autoveicoli
+          o Conferma dell'operazione in js
+    * Aggiungere una carta di credito
+          o Fare controlli javascript sui campi
+    * Visualizzare le proprie carte di credito
+    * Modificare una carta di credito
+          o Fare controlli javascript sui campi
+          o Conferma dell'operazione in js
+    * Cancellare una carta di credito
+          o Conferma dell'operazione in js
+    * Inviare un messaggio ad un altro utente registrato
+    * Visualizzare una lista di messaggi ricevuti
+    * Visualizzare una lista di messaggi inviati
+    * Cancellare un messaggio ricevuto o inviato
+          o Conferma dell'operazione in js
+    * Visualizzare i gruppi di cui si fa parte
+    * Lasciare un gruppo di cui si fa parte
+          o Conferma dell'operazione in js
+    * Ricerca di un parcheggio
+    * Visualizzare i dati di un parcheggio
+    * Aggiungere un parcheggio ai preferiti
+    * Mostrare una lista dei parcheggi preferiti
+    * Eliminare un parcheggio dai preferiti
+          o Conferma dell'operazione in js
+    * Prenotare un posto in un parcheggio
+          o Conferma dell'operazione in js
+    * Vedere una lista delle soste prenotate
+    * Eliminare una prenotazione
+          o Conferma dell'operazione in js
+
+    Visitatore
+
+    * Registrarsi al sito
+          o Fare controlli javascript sui campi
+
+Commento:
+	Non il miglior codice del mondo, anzi, pero' contiene alcuni
+	spunti interessanti e tutto quanto richiesto dal corso.

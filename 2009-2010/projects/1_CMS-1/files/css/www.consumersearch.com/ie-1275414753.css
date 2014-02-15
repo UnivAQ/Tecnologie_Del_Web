@@ -1,0 +1,103 @@
+#page {
+  line-height: 1.3;
+}
+
+UL.primary-links LI A, .footer UL.menu li a {
+  font-size: 12px;
+}
+
+div.product-header-txt span {
+  line-height: 28px;
+  margin-top: -5px;
+}
+
+ul.offers span.price {
+  float: left;
+}
+
+.where-to-buy .see-all a {
+  line-height: 18px;
+}
+
+UL.primary-links LI.li-1 div.submenu-flyout {
+  margin-left: -99px !important;
+}
+UL.primary-links LI.li-2 div.submenu-flyout {
+  margin-left: -129px !important;
+}
+UL.primary-links LI.li-3 div.submenu-flyout {
+  margin-left: -123px !important;
+}
+UL.primary-links LI.li-3 div.submenu-flyout {
+  margin-left: -127px !important;
+}
+UL.primary-links LI.li-4 div.submenu-flyout {
+  margin-left: -130px !important;
+}
+UL.primary-links LI.li-5 div.submenu-flyout {
+  margin-left: -167px !important;
+  width: 225px;
+}
+UL.primary-links LI.li-6 div.submenu-flyout {
+  margin-left: -113px !important;
+}
+UL.primary-links LI.li-7 div.submenu-flyout {
+  margin-left: -130px !important;
+}
+UL.primary-links LI.li-8 div.submenu-flyout {
+  margin-left: -202px !important;
+}
+
+/* IE8 override for primary nav submenus */
+.ie8 UL.primary-links LI.li-1 div.submenu-flyout, 
+.ie8 UL.primary-links LI.li-2 div.submenu-flyout,
+.ie8 UL.primary-links LI.li-3 div.submenu-flyout,
+.ie8 UL.primary-links LI.li-3 div.submenu-flyout,
+.ie8 UL.primary-links LI.li-4 div.submenu-flyout,
+.ie8 UL.primary-links LI.li-5 div.submenu-flyout,
+.ie8 UL.primary-links LI.li-6 div.submenu-flyout,
+.ie8 UL.primary-links LI.li-7 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+.ie8 UL.primary-links LI.li-8 div.submenu-flyout {
+  margin-left: -100px !important;
+}
+
+div.expcol span.longtext {
+  padding-left: 3px;
+}
+.sources-block p.button {
+  padding-bottom: 7px;
+}
+
+.primary-submenu-home {
+  top: 129px;
+  padding-left: 4px;
+}      
+.primary-submenu-home-admin {
+  top: 149px;
+  padding-left: 4px;
+}      
+.primary-submenu-inside {
+  top: 118px;
+  padding-left: 4px;
+}
+.primary-submenu-inside-admin {
+  top: 138px;
+  padding-left: 4px;
+}
+
+.cs-button a {
+  line-height: 1.33em;
+}
+
+/* workaround for IE issue */
+div.navigation-content a.bubbleInfo img.infoicon,
+div.navigation-content a.bubbleInfo img.infoicon {
+   margin-top: 3px;
+}
+
+.gateway-header-fap {
+  padding-top: 0;
+}
+

@@ -1,0 +1,59 @@
+{include file="header.tpl.html"}
+{literal}
+<script type='text/javascript'>
+var req;
+function loadXMLDoc(key) {
+   var url="load_cat.php?id_macrocategoria="+key;
+   getObject("com").innerHTML = ' Attendere Prego...';
+   try { req = new ActiveXObject("Msxml2.XMLHTTP"); }
+   catch(e) {
+      try { req = new ActiveXObject("Microsoft.XMLHTTP"); }
+      catch(oc) { req = null; }
+   }
+   if (!req && typeof XMLHttpRequest != "undefined") { req = new
+XMLHttpRequest(); }
+   if (req != null) {
+      req.onreadystatechange = processChange;
+      req.open("GET", url, true);
+      req.send(null);
+   }
+}
+function processChange() {
+   if (req.readyState == 4 && req.status == 200) {
+      getObject("com").innerHTML = req.responseText;
+      document.res_request.state.focus();
+   }
+}
+
+function getObject(name) {
+   var ns4 = (document.layers) ? true : false;
+   var w3c = (document.getElementById) ? true : false;
+   var ie4 = (document.all) ? true : false;
+
+   if (ns4) return eval('document.' + name);
+   if (w3c) return document.getElementById(name);
+   if (ie4) return eval('document.all.' + name);
+   return false;
+}
+</script>
+{/literal}
+<a href="prodotto.php?id_prodotto={$id}">< Torna al prodotto</a><br /><br />
+<h3>Modifica</h3>
+<form enctype="multipart/form-data" action="?id_prodotto={$prodotto.id_prodotto}" method="post">
+    <table>
+        <tr><td><input type="hidden" name="save" value="1"/></td></tr>
+        <tr><td>Titolo:</td> <td><input type="text" name="titolo" value="{$prodotto.titolo}" style="width: 435px"/></td></tr>
+        <tr><td>Descrizione:</td> <td><textarea name="descrizione" cols="" rows="10" style="width: 435px">{$prodotto.descrizione}</textarea></td></tr>
+        <tr><td>Categoria:</td> <td>
+                <select name="id_macrocategoria" onchange="loadXMLDoc(this.value);" onfocus="loadXMLDoc(this.value);">
+                {foreach from=$macrocategorie item=macro}
+                <option value="{$macro.id_macrocategoria}" {if $macro.id_macrocategoria==$prodotto.id_macrocategoria}selected="selected"{/if}>{$macro.nome_macrocategoria}</option>
+                {/foreach}
+                </select>
+            </td></tr>
+        <tr><td>Sottocategoria:</td><td><div id="com"><select name="id_categoria"><option value="{$prodotto.id_categoria}">{$prodotto.nome_categoria}</option></select></div></td></tr>
+        <tr><td>Immagine:</td> <td><input type="file" name="file" style="width: 435px" /></td></tr>
+        <tr><td><input type="submit" value="Modifica" /></td></tr>
+    </table>
+</form>
+{include file="footer.tpl.html"}

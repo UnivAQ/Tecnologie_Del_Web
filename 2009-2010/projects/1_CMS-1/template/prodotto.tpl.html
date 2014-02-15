@@ -1,0 +1,101 @@
+{include file="header.tpl.html"}
+
+
+       
+           
+             <a href="macrocategorie.php?id_macrocategoria={$prodotto.id_macrocategoria}">{$prodotto.nome_macrocategoria}</a>  >  <a href="sottocategorie.php?id_categoria={$prodotto.id_categoria}">{$prodotto.nome_categoria}</a><br /><br />
+             <a href="javascript:history.back()">< Torna indietro</a><br />
+             <h1 class="inner">{$prodotto.titolo}
+
+               
+                <!--Modifica prodotto-->
+                {if $prodotto.can_edit}
+                <a href="modifica.php?id_prodotto={$prodotto.id_prodotto}"><img align="top" class="ico" alt="modifica" src="./template/images/modifica.png"/></a>
+                {/if}
+                 <!--Aggiungi specifiche-->
+                {if $prodotto.can_add_specifiche}
+                <a href="add_specifiche.php?id_prodotto={$prodotto.id_prodotto}"><img align="top" alt="delete" class="ico" src="./template/images/specifiche.gif"/></a>
+                {/if}
+                <!--Elimina prodotto-->
+                {if $prodotto.can_delete}
+                <a href="del_prodotto.php?id_prodotto={$prodotto.id_prodotto}"><img align="top" alt="delete" class="ico" src="./template/images/delete.png"/></a>
+                {/if}
+            </h1>
+            <div><img src="img.php?id={$prodotto.id_prodotto}" alt="" width="177" height="117" class="aboutus-img" /><br />
+                <br />
+                {$prodotto.descrizione}. <br />
+                <br />
+                <br />
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="aboutcolumn1">
+                <div>
+                    <h5>Specifiche</h5>
+                    {foreach from=$spec item=specifiche}
+                    {$specifiche.denominazione}: {$specifiche.valore}<br />
+                    {/foreach}
+
+                </div>
+            </div>
+            <div class="aboutcolumn2">
+                <div>
+                    <h5>Rating</h5>
+                    Rating: {$prodotto.rating_medio}
+                    {if $can_rate}
+                    <form method="post" action="add_rate.php">
+                        <input type="hidden" name="id_prodotto" value="{$prodotto.id_prodotto}"/>
+                        <select name="rating">
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                        </select>
+                        <input type="submit" value="RATE!"/>
+                    </form>
+                    {/if}
+
+
+                    <div class="insidereadmore"></div>
+                </div>
+                <br />
+                <br />
+            </div>
+            <div class="ourprojectrow">
+                <h6 class="inner">Feedback utenti</h6>
+                {if $feed}{foreach from=$feed item=feedback}<div class="blog-posted-row"><b><u>{$feedback.titolo}</u></b> by {$feedback.username}<br /></div>
+                {$feedback.feedback}<br /><br />
+                Punteggio feedback: {$feedback.somma_rating}
+                {if $feedback.can_rate}
+                <a target="_blank" href="add_rating_feedback.php?id_feedback={$feedback.id_feedback}&amp;rating=plus&amp;id_prodotto={$prodotto.id_prodotto}">[+]</a> <a target="_blank" href="add_rating_feedback.php?id_feedback={$feedback.id_feedback}&amp;rating=minus">[-]</a>
+                {/if}
+                {if $feedback.can_delete}
+                <br /><a href="del_feedback.php?id_feedback={$feedback.id_feedback}&amp;id_prodotto={$prodotto.id_prodotto}"><img alt="delete" class="ico" src="./template/images/delete.png"/></a>
+                <br />
+                {/if}
+                <br /><br />
+                {/foreach}
+
+                {else}
+                Non sono stati ancora rilasciati feedback<br /><br />
+                {/if}
+                {if $prodotto.can_add_feedback}
+                <form method="post" action="add_feedback.php">
+                    <table>
+                        <tr><td><input type="hidden" name="id_prodotto" value="{$prodotto.id_prodotto}"/></td></tr>
+                        <tr><td>Titolo:</td> <td><input size="61" name="titolo" /></td></tr>
+                        <tr><td>Feedback:</td> <td><textarea name="feedback" rows="4" cols="70"></textarea></td></tr>
+                        <tr><td><input align="right" type="submit" value="RATE!"/></td></tr>
+                    </table>
+                </form>
+                {/if}
+            </div>
+            <div>
+            </div>
+       <a href="javascript:history.back()">< Torna indietro</a><br />
+    
+
+
+{include file="footer.tpl.html"}

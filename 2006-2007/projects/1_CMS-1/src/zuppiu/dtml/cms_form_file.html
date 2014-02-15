@@ -1,0 +1,23 @@
+<[message::mex library="zuppiu"]>
+<form name="form_file" method="post" enctype="multipart/form-data">
+<input type="hidden" name="page" value="1" />
+<input type="hidden" name="filename" value="" />
+<table class="forms">
+<tr>
+	<td class="title">Carica file</td>
+</tr>
+<tr>
+	<td>File: <input type="file" name="userfile" size="30" /></td>
+</tr>
+<tr>
+	<td>Descrizione: <textarea name="descrizione" cols="30" rows="7"></textarea></td>
+</tr>
+<tr>
+	<td colspan="2" align="right">
+		<button type="button" onclick="uploadFile();">Carica</button>
+		<button type="reset">Cancella</button>
+	</td>
+</tr>
+</table>
+</form>
+<div id="doing"></div>

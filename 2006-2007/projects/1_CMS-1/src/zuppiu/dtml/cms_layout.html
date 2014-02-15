@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Zuppiu - Manage What You Want</title>
+<link rel="stylesheet" type="text/css" href="css/cms.css" />
+<script type="text/javascript" language="javascript" src="js/style.js"></script>
+<script type="text/javascript" language="javascript" src="js/actions.js"></script>
+<script type="text/javascript" language="javascript" src="js/checks.js"></script>
+<script type="text/javascript" language="javascript" src="js/get.js"></script>
+<script type="text/javascript" language="javascript" src="js/file.js"></script>
+<script type="text/javascript" language="javascript" src="js/section.js"></script>
+</head>
+
+<body>
+<center>
+<div id="wrapper">
+	<div id="header">
+	<span class="textheader">
+	<br/>
+	Benvenuto <strong><[utente::stringsequence library="zuppiu"]></strong>!<br/>
+	<a href="logout.php">Logout</a> <img border="0" src="img/arrow_left.gif"><br/>
+	<a href="zuppiu_edit_user.php?username=<[username]>">Il mio profilo</a> <img border="0" src="img/arrow_left.gif"><br/>
+	<a href="zuppiu_index.php">Indice</a> <img border="0" src="img/arrow_left.gif" /><br/>
+	<a href="./">Vai al sito</a> <img border="0" src="img/arrow_left.gif" />
+	</span>
+	</div>
+	<div id="menu">
+	<[menu]>
+	</div>
+	<div id="content">
+	<[content]>
+	</div>
+</div>
+</center>
+</body>
+
+</html>

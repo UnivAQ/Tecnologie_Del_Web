@@ -1,0 +1,1472 @@
+BODY { 
+	behavior: url("../../../sites/all/themes/zen/csnew/public/css/csshover.htc"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/css/csshover.htc*/);	
+}
+
+img.transparent-png{visibility: hidden;}
+
+.header {
+	padding-bottom: 0px;
+	float:none;
+	clear:both;
+}
+
+#page {
+  line-height: 1.3;
+}
+
+#content {
+  margin-top: 0;
+  padding-top: 0;
+  float:none;
+}
+
+.main-content {
+  margin-top: 0;
+  padding-top: 0;
+  width: 649px;
+}
+
+.product-details {
+  margin-top: 10px;
+  padding-top: 0;
+}
+
+.gray-border {width: 100% !important;}
+
+.container {
+	background: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/backgrounds/bg-footer.png', sizingMethod='scale');
+}
+
+.footer  {
+	background: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/backgrounds/bg-footer.png', sizingMethod='scale');
+}
+
+.b-footer  {
+	background: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/backgrounds/b-footer.png', sizingMethod='scale');
+}
+.right-subblock {width: 363px;}
+.b-bottom {width: 100% !important;}
+.block-brown .input INPUT {width: 80%;}
+.right-col-product P,
+.right-col-product A,
+.right-col-product H2,
+.right-col-product INPUT {position: relative;}
+
+/* Main Menu */
+ul.primary-links {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/images/header_bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/images/header_bg.gif*/) repeat-x scroll center bottom;
+clear:both;
+float:none;
+height:52px;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:-20px 0 0;
+padding:0;
+}
+
+.primary-links .li-1{width:98px}
+.primary-links .li-2{width:126px}
+.primary-links .li-3{width:123px}
+.primary-links .li-4{width:127px}
+.primary-links .li-5{width:164px}
+.primary-links .li-6{width:110px}
+.primary-links .li-7{width:127px}
+.primary-links .li-8{width:101px}
+
+
+ul.primary-links LI.li-1 A.hover, ul.primary-links LI.li-1 A:HOVER, ul.primary-links LI.li-1 A.active, 
+body.section-electronics UL.primary-links LI.li-1 A  
+	{	color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-1-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-1-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-2 A.hover, ul.primary-links LI.li-2 A:HOVER, ul.primary-links LI.li-2 A.active,
+body.section-home-garden UL.primary-links LI.li-2 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-2-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-2-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-3 A.hover, ul.primary-links LI.li-3 A:HOVER, ul.primary-links LI.li-3 A.active,
+body.section-kitchen-food UL.primary-links LI.li-3 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-3-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-3-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-4 A.hover, ul.primary-links LI.li-4 A:HOVER, ul.primary-links LI.li-4 A.active,
+body.section-fitness-sports ul.primary-links LI.li-4 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-4-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-4-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-5 A.hover, ul.primary-links LI.li-5 A:HOVER, ul.primary-links LI.li-5 A.active,
+body.section-computers-internet ul.primary-links LI.li-5 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-5-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-5-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-6 A.hover, ul.primary-links LI.li-6 A:HOVER, ul.primary-links LI.li-6 A.active,
+body.section-family-pets UL.primary-links LI.li-6 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-6-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-6-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-7 A.hover, ul.primary-links LI.li-7 A:HOVER, ul.primar	y-links LI.li-7 A.active,
+body.section-health-beauty UL.primary-links LI.li-7 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-7-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-7-bg.gif*/);background-position: 0 bottom;}
+ul.primary-links LI.li-8 A.hover, ul.primary-links LI.li-8 A:HOVER, ul.primary-links LI.li-8 A.active,
+body.section-automotive ul.primary-links LI.li-8 A 
+	{color:#6a3704; background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/li-8-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/li-8-bg.gif*/);background-position: 0 bottom;}
+
+ul.primary-links li {
+float:left;
+margin-right:2px;
+padding:0;
+text-align:center;
+display:block;
+position:relative;
+z-index:100;
+}
+
+.container ul.primary-links li a, .primary-submenu ul.primary-links li a {
+background:transparent none no-repeat scroll right bottom;
+color:#FFFFFF;
+display:block;
+font-family:Georgia,"Times New Roman",serif;
+font-size:13px;
+font-weight:bold;
+line-height:133%;
+padding:24px 0 8px;
+text-decoration:none;
+}
+
+ul.primary-links li.li-1 a, ul.primary-links li.li-2 a, ul.primary-links li.li-3 a, ul.primary-links li.li-4 a, ul.primary-links li.li-5 a, ul.primary-links li.li-6 a, ul.primary-links li.li-7 a {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/divider-li.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/divider-li.gif*/) no-repeat scroll right 17px;
+}
+
+UL.primary-links LI A, .footer UL.menu li a {
+font-size: 13px;
+}
+
+ul.primary-links li.last {
+margin:0;
+}
+
+ul.primary-links li div.submenu-flyout {
+background:#fff url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/what-this-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/what-this-bg.gif*/) repeat-x scroll left top;
+border-color:#D7B33C #D7B33C #AD9F6F;
+border-style:solid;
+border-width:2px 1px;
+display:none;
+padding:5px 0;
+margin:0;
+left:0;
+position:absolute;
+z-index:500;
+width:200px;
+}
+
+ul.primary-links li div.submenu-flyout ul, ul.primary-links li div.submenu-flyout ul ul, ul.primary-links li div.submenu-flyout ul ul ul {
+list-style-type:none;
+padding:0;
+margin:0;
+background:none;
+}
+
+ul.primary-links li div.submenu-flyout li {
+display:block;
+float:none;
+list-style-type:none;
+margin:0;
+padding:0;
+text-align:left;
+}
+
+ul.primary-links li div.submenu-flyout li a {
+color:#333333;
+display:block;
+float:none;
+font-family:Arial,sans-serif;
+font-size:11px;
+font-weight:normal;
+padding:1px 10px;
+}
+
+ul.primary-links .li-1 .submenu-flyout div ul li a, ul.primary-links .li-2 .submenu-flyout div ul li a, ul.primary-links .li-3 .submenu-flyout div ul li a, ul.primary-links .li-4 .submenu-flyout div ul li a, ul.primary-links .li-5 .submenu-flyout div ul li a, ul.primary-links .li-6 .submenu-flyout div ul li a, ul.primary-links .li-7 .submenu-flyout div ul li a {
+background:none;
+}
+
+ul.primary-links li div.submenu-flyout li a:hover {
+  color: #7D1D3D;
+  background: #FFFFFF url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/what-this-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/what-this-bg.gif*/) repeat-x scroll left top;
+  text-decoration: none;
+}
+
+ul.primary-links li.last div.submenu-flyout {
+left:-101%;
+}
+
+ul.primary-links li div.submenu-flyout h2, ul.primary-links li div.submenu-flyout p.header {
+color:#7D1D3D;
+font-family:Georgia,serif;
+font-size:13px;
+font-weight:bold;
+margin:4px 10px 7px;
+text-align:left;
+}
+
+ul.primary-links li div.submenu-flyout li a.right-icon {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/icons/right-icon.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/right-icon.gif*/) no-repeat scroll right center;
+color:#53922A;
+float:right;
+font-family:Georgia;
+font-size:11px;
+font-style:italic;
+font-weight:bold;
+margin:3px 5px 5px 0;
+padding-right:10px;
+text-align:right;
+}
+
+UL.primary-links LI div.submenu-flyout li a.right-icon:hover {
+color:#53922A;
+text-decoration: underline;
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/icons/right-icon.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/right-icon.gif*/) no-repeat scroll right center;
+}
+UL.primary-links LI.li-5 div.li-5.submenu-flyout {
+  width: 225px;
+}
+
+/* Main Menu END */
+
+div.product-header-txt span {
+  line-height: 28px;
+  margin-top: -5px;
+}
+
+ul.offers span.price {
+  float: left;
+}
+
+.where-to-buy .see-all a {
+  line-height: 18px;
+}
+
+
+#amazonian-reviews-search-form INPUT.form-submit,
+#amazonian-reviews-search-form INPUT.submit {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/buttons/submit.png', sizingMethod='image');
+	background: none;
+}
+
+
+/******************** Main Content *****************************/
+
+#header {
+margin-bottom:-1px
+}
+
+#page {
+margin:auto;
+text-align:left;
+width:998px;
+clear:both;
+}
+
+#content {
+margin:0;
+}
+.center {
+margin:auto;
+text-align:left;
+width:982px;
+}
+#home_showcase {
+	margin:0 4px;
+}
+#product-tabs {
+margin:15px 20px 0;
+padding:0;
+height:33px;
+overflow:hidden;
+}
+#product-tabs ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0;
+padding:0;
+height:33px;
+position:absolute;
+z-index:0;
+}
+#product-tabs li {
+display:inline;
+margin:0 4px 0 0;
+padding:0;
+width:151px;
+}
+#product-tabs li a {
+margin:6px 0 0;
+}
+#product-tabs li a span {
+padding:5px 0 2px;
+text-align:center;
+width:130px;
+}
+
+#product-tabs li a.dropDown span {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/tab-dropDown.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/tab-dropDown.gif*/) no-repeat right;
+padding:5px 10px 4px 0;
+width:120px;
+}
+
+#product-tabs li.active {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/select-tab.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/select-tab.jpg*/) no-repeat scroll 100% 0;
+width:180px;
+height:33px;
+overflow:hidden;
+}
+
+#product-tabs li.active a {
+margin:0;
+padding:0 0 0 10px;
+height:33px;
+line-height:33px;
+width:162px;
+display:block;
+overflow:hidden;
+}
+
+#product-tabs li.active a span {
+margin:0;
+padding:3px 0 0;
+width:162px;
+display:block;
+}
+
+#product-tabs li.active a.dropDown span {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/tab-dropDown.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/tab-dropDown.gif*/) no-repeat scroll 100% 55%;
+padding:3px 5px 5px 0;
+margin:0;
+width:155px;
+line-height: 30px;
+}
+
+#product-tabs li ul.submenu-flyout {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_bottom_153.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_bottom_153.gif*/) no-repeat left bottom;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:-3px 0 0 -2px;
+padding:0 0 10px 0;
+position:absolute;
+z-index:200;
+}
+
+#product-tabs li ul.submenu-flyout li, #product-tabs li ul.submenu-flyout li.active, #product-tabs li ul.submenu-flyout li.first
+{
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_top_153.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_top_153.gif*/) repeat-y;
+font-size:10px;
+margin:0;
+padding:3px 0 0 6px;
+height:25px !important;
+width:147px !important;
+}
+
+#product-tabs li ul.submenu-flyout li.last, #product-tabs li.active ul.submenu-flyout li.last {
+padding-bottom:3px;
+}
+
+#product-tabs li ul.submenu-flyout li a, #product-tabs li ul.submenu-flyout li.active a, #product-tabs li ul.submenu-flyout li.first a {
+color:#FFFFFF;
+font-size:10px;
+float:none;
+margin:1px 6px 1px 6px;
+padding:7px 0 0;
+width:128px;
+display:block;
+}
+
+#product-tabs li ul.submenu-flyout li a:hover,#product-tabs li.active ul.submenu-flyout li a:hover{
+text-decoration:none;
+color:#7D1D3D;
+}
+
+#product-tabs li.active ul.submenu-flyout {
+padding: 0 0 12px;
+margin: 0 0 0 -1px;
+list-style: none;
+position:absolute;
+z-index: 200;
+background: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_bottom_182_w.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_bottom_182_w.gif*/) no-repeat bottom;
+}
+
+#product-tabs li.active ul.submenu-flyout li, #product-tabs li.active ul.submenu-flyout li.active, #product-tabs li.active ul.submenu-flyout li.first {
+background: #eee url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_top_182_w.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fr_submenu_bg_top_182_w.gif*/) repeat-y;
+font-size:10px;
+margin:0;
+padding:0;
+text-transform:uppercase;
+height:25px !important;
+width:182px !important;
+}
+
+#product-tabs li.active ul.submenu-flyout li a, #product-tabs li.active ul.submenu-flyout li.active a, #product-tabs li.active ul.submenu-flyout li.first a
+{
+color:#666;
+font-size:10px;
+float:none;
+margin:1px 5px 1px 7px;
+padding:8px 0 0 3px;
+text-align:left;
+display:block;
+}
+
+.top-r-box {
+float:right;
+margin-right:0;
+margin-top:-3px;
+position:inherit;
+width:315px;
+}
+
+#top-r-box .top-line-links ul li a {
+color:#FFFFFF;
+display:block;
+font-size:10px;
+padding-left:25px;
+}
+
+body.front .brown-title h1, body.front .brown-title p.header {
+color:#fff;
+font-family:Georgia,"Times New Roman",Times,serif;
+font-size:13px;
+font-weight:bold;
+line-height:170%;																					
+margin:2px 5px 0 10px;
+padding:0;
+}
+
+.top-part {
+min-height:5.5em;
+height:5.5em;
+}
+
+.left-column {
+  color:#333333;
+  display:block;
+  float:left;
+  margin:0 0 0 6px;
+  padding-top:10px;
+  width:655px;
+}
+
+.left-column.main-content {
+  margin-bottom:20px;
+  margin-top:-10px;
+  padding-top:0;
+}
+
+.left-col {
+float:left;
+margin-left:2px;
+width:675px;
+}
+
+.left-col.lc-list {
+text-align:left;
+background:#FFFFFF none repeat scroll 0 0;
+margin-left:20px;
+}
+
+.left-col.lc-list .b-border {
+clear:both;
+width:615px;
+}
+
+.left-col.lc-list .gray-border {
+width:775px !important;
+display:block;
+}
+
+.b-border {
+clear:both;
+font-size:1px;
+line-height:0;
+margin:0 0 15px 0;
+}
+.b-border div {
+height:1px;
+}
+.brown-title {
+padding:0;
+margin:0;
+clear:both;
+}
+
+.brown-title, .l-brown-title, .r-brown-title {
+clear:both;
+float:none;
+}
+.r-brown-title {margin-left:1px}
+
+.gray-border {
+border-left:1px solid #ccc;
+border-right:1px solid #ccc;
+clear:left;
+padding-bottom:5px;
+width:674px !important;
+}
+
+.right-col .gray-border {
+width:299px !important;
+}
+
+.rb-gray-border {
+margin-left:0;
+}
+
+.b-gray-border {
+border-bottom:1px solid #ccc;
+font-size:1px;
+line-height:0;
+position:relative;
+}
+
+.right-col {
+color:#666666;
+float:right;
+font-size:12px;
+width:299px;
+margin-right:2px !important;
+}
+.right-col .brown-title {
+	width:300px;
+}
+
+/* Product Guide Results Page */
+
+.box.product-guides {
+background:none;
+margin-top:2em;
+}
+
+.box.product-guides a.guide-best {
+padding:5px 28px 5px 0;
+}
+
+
+.box.product-guides .product-guide {
+float:left;
+height:124px;
+overflow:hidden;
+width:50%;
+}
+.box.product-guides .product-guide ul {
+font-size:11px;
+margin-left:110px;
+margin-top:1em;
+}
+
+.box.product-guides .product-guides-box {
+background:transparent url("../../../sites/all/modules/csearch/cs_solr/box-bg-content-product-guides.gif"/*tpa=http://www.consumersearch.com/sites/all/modules/csearch/cs_solr/box-bg-content-product-guides.gif*/) no-repeat scroll 50% 0;
+margin-right:0;
+width:620px;
+}
+
+.box.product-reviews, .box.product-guides, .box.more-from-shopping, .box.search-tips {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bg-brown.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bg-brown.jpg*/) repeat-x;
+border:1px solid #CCCCCC;
+margin-top:1em;
+}
+
+.box.product-reviews h2, .box.product-guides h2, .box.more-from-shopping h2, .box.search-tips h2 {
+color:#fff;
+font-size:100%;
+height:25px;
+margin:0;
+padding:5px 0 0 1em;
+}
+
+/* Right Side */
+.right-col-product {
+clear:right;
+float:right;
+line-height:130%;
+overflow:hidden;
+padding:0;
+margin:0 2px 0 0;
+text-align:left;
+width:176px;
+}
+
+.page-full_story #sidebar-right, .page-all_reviews #sidebar-right {
+background:transparent none repeat scroll 0 0;
+margin:40px 2px 0 0;
+width:300px !important;
+}
+
+/* Product Info */
+
+.product-plp-info {
+float:left;
+padding:10px 0 0 17px;
+width:444px;
+display:block;
+}
+
+.product-info {
+border-collapse:collapse;
+display:block;
+height:212px;
+padding:20px 25px;
+position:absolute;
+width:350px;
+z-index:101;
+}
+.product-info-photo {
+float:left;
+padding:15px 0 0;
+text-align:center;
+width:150px;
+}
+.product-info .product-image {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/image-not-found.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/image-not-found.gif*/) no-repeat scroll 0 0;
+float:left;
+height:100px;
+overflow:hidden;
+width:100px;
+}
+.product-info-title {
+float:none;
+width:auto;
+padding:0 0 5px;
+}
+.product-info h5, .product-info span.h5 {
+clear:both;
+color:#666666;
+font-family:arial;
+font-size:12px;
+font-weight:bold;
+margin:0 0 0 20px;
+padding:0;
+width:210px;
+}
+.product-info .see-all {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/icons/green-arrow.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/green-arrow.gif*/) no-repeat scroll 0 40%;
+font-family:georgia;
+font-size:11px;
+font-style:italic;
+font-weight:bold;
+padding-left:15px;
+}
+.product-info ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0 0 0 20px;
+padding:0;
+display:block;
+}
+.product-info-text {
+padding:0;
+width:290px;
+display:block;
+}
+.product-info-text p{
+color:#333;
+}
+.product-info-text a.a-expand, .product-info-text p.a-expand {
+cursor:pointer;
+font-size:0;
+margin:20px 0 10px;
+padding:0;
+width:95px;
+height:31px;
+}
+
+.product-info-text a.a-collapse, .product-info-text p.a-collapse {
+cursor:pointer;
+font-size:0;
+margin:20px 0 10px;
+padding:0;
+width:89px;
+height:31px;
+}
+
+.adsense-wrapper {
+margin-top:0;
+padding-bottom:30px;
+clear:both;
+}
+
+.adsense.plp-radlink {
+clear:both;
+margin-left:-150px;
+padding-top:0.5em;
+position:absolute;
+width:600px;
+z-index:220;
+}
+
+/* Product Expert */
+
+.product-expert {
+display: block;
+float:right;
+margin:-11px 0 0 0;
+position:inherit;
+width:303px;
+}
+
+.product-expert-data {
+float:left;
+height:113px;
+overflow:auto;
+padding:0 0 5px;
+position:relative;
+width:100%;
+}
+
+.product-expert-top {
+float: none;
+display:block;
+font-size:0;
+height:22px;
+margin:-11px 0 0;
+position:relative;
+padding:0 10px 0 20px;
+width:273px;
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/backgrounds/expert-top.png', sizingMethod='scale');
+background: none;
+}
+
+.product-expert-bg {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/expert-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/expert-bg.gif*/) repeat-y scroll left top;
+float:left;
+padding:0 10px 0 20px;
+width:273px;
+}
+
+.slider .jScrollPaneContainer {
+margin-bottom:1px;
+overflow:hidden;
+position:relative;
+z-index:1;
+}
+
+.slider .jScrollPaneTrack {
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/scrollbar/bar.png', sizingMethod='scale');
+background: none;
+}
+
+.slider .jScrollPaneDrag {
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/sites/all/themes/zen/csnew/public/images/scrollbar/scrollIcon.png', sizingMethod='image');
+background: none;
+}
+
+.slider a.jScrollArrowUp {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/scrollbar/up.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/scrollbar/up.gif*/) no-repeat scroll 0 -22px;
+height:22px;
+}
+.slider a:hover.jScrollArrowUp {
+background-position:0 0;
+height:22px;
+}
+.slider a.jScrollArrowDown {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/scrollbar/down.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/scrollbar/down.gif*/) no-repeat scroll 0 -22px;
+height:22px;
+}
+.slider a:hover.jScrollArrowDown {
+background-position:0 0;
+height:22px;
+}
+
+.product-expert-bottom {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/expert-bottom-bg.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/expert-bottom-bg.gif*/) repeat-y left top;
+margin-top:-1px;
+width:303px;
+}
+
+.product-expert-bottom a {
+color:#53922A;
+display:inline;
+font-family:"Georgia";
+font-size:11px;
+font-style:italic;
+font-weight:bold;
+margin:0 0 0 21px;
+padding:0;
+}
+.product-expert-bottom-fade {
+background:none;
+display:none;
+}
+
+.product-expert-tbottom {
+padding:5px 15px 5px 20px;
+width: 273px;
+}
+.product-expert-bbottom {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/expert-bottom.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/expert-bottom.gif*/) no-repeat scroll left bottom;
+padding:0 17px 15px 11px;
+width: 278px;
+clear:both;
+}
+
+.product-expert-bbottom-center {
+clear:both;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+.product-expert-bbottom table {
+clear:both;
+margin:0 auto;
+}
+
+
+/* Bubble Info */
+/*
+.bubbleInfo {
+background:url(/sites/all/themes/zen/csnew/public/images/icons/i.gif) no-repeat;
+background-position:3px 0;
+cursor:pointer;
+margin:0;
+padding-left:15px;
+position:relative;
+z-index:101;
+}
+*/
+
+/* Full Story Page */
+.fullReport-top {
+background:url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fullreport-top.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fullreport-top.gif*/) no-repeat;
+height:10px;
+display:block;
+padding:0;
+margin:0 0 -5px 0;
+}
+
+.page-full_story .fullReport-content-head {
+border-left:1px solid #CCCCCC;
+display:block;
+float:none;
+padding-bottom:5px;
+width:646px !important;
+overflow:hidden;
+}
+
+.page-full_story .fullReport-content {
+display:block;
+clear:both;
+float:none;
+/* border:1px solid #000; */ 
+width:646px !important;
+overflow:hidden;
+}
+
+.right-info {
+color:#999999;
+float:right;
+font-size:10px;
+padding-right:11px;
+}
+
+.fullReport-left-col-bkgd {
+background-image:url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fullreport-left-col.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fullreport-left-col.gif*/);
+background-repeat:repeat-y;
+width:186px !important;
+}
+.fullReport-left-col-header {
+border-bottom:1px dotted #666666;
+color:#660003;
+font-family:arial;
+font-size:14px;
+font-weight:bold;
+margin-left:8px;
+padding-bottom:5px;
+padding-top:5px;
+width:152px;
+}
+
+.fullReport-left-col {
+float:left;
+width:186px;
+}
+.fullReport-left-col ul.links-full_story_toc {
+margin:0 24px 0 12px;
+padding:0;
+}
+.fullReport-left-col ul.links-full_story_toc li {
+border-bottom:1px dotted #666;
+list-style-type:none;
+margin:0;
+padding:5px 0 5px 5px;
+}
+.fullReport-left-col ul.links-full_story_toc li a.active {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/icons/arrow.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/arrow.gif*/) no-repeat scroll 100% 50%;
+color:#660033;
+font-weight:bold;
+padding-right:15px;
+}
+.fullreport-left-col-bottom {
+background-image:url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/fullreport-left-col-bottom.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/fullreport-left-col-bottom.jpg*/);
+background-repeat:no-repeat;
+height:40px;
+width:186px !important;
+}
+.fullReport-left-col-product {
+float:left;
+line-height:130%;
+margin-top:10px;
+overflow:hidden;
+text-align:left;
+width:176px;
+}
+/*
+.fullReport-mid-col {
+float:left;
+margin:0 0 0 10px;
+width:400px;
+}
+*/
+
+
+/* Adsense */
+.adsense.sidebar div {
+padding-top:1em;
+margin-right:.5em;
+}
+
+.adsense.full-report-radlink {
+border:1px solid #CCCCCC;
+float:right;
+font-weight:bold;
+margin:0 0 1em 1em;
+padding:1em;
+width:120px;
+}
+
+/* Right Sidebar */
+#side-bar.right-col {
+clear:right;
+float:right;
+line-height:130%;
+margin:0 2px 0 0;
+overflow:hidden;
+padding:0;
+text-align:left;
+width:176px;
+}
+.digital-border {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/digital-border.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/digital-border.gif*/) repeat-x scroll left top;
+height:1px;
+margin:4px 0 0 76px;
+width:150px;
+}
+.r-t-box ul {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:-10px 20px 0 10px;
+padding:0 0 20px;
+clear:both
+}
+.r-t-box ul li {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/icons/best-icon.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/best-icon.gif*/) no-repeat;
+color:#4E4E4E;
+font-size:11px;
+line-height:14px;
+margin-top:10px;
+padding-left:30px;
+}
+
+.border-bottom {
+border-bottom:1px dotted #666666;
+margin:5px 0 0 10px;
+padding-bottom:5px;
+width:278px;
+}
+.border-bottom.last-border {
+border:medium none;
+}
+
+/* Product Guide Pages */
+.gateway-container {
+margin-left:5px;
+position:relative;
+width:670px;
+top: -60px;
+}
+.gateway-container-center {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-container-center.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-container-center.gif*/) repeat-y;
+width:670px;
+}
+.gateway-container-top {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-container-top.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-container-top.jpg*/) no-repeat left top;
+height:36px;
+width:670px;
+margin-top: -18px;
+}
+
+.gateway-mod {
+margin:0;
+padding-left:1px;
+width:666px;
+}
+.gateway-mod-top {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-top.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-top.jpg*/) no-repeat left top;
+height:11px;
+width:666px;
+}
+.gateway-mod-top img {
+display:none;
+}
+.gateway-mod-center {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-center.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-center.jpg*/) repeat-y;
+padding-left:5px;
+width:659px;
+}
+.gateway-mod-bottom {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-bottom.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-bottom.jpg*/) no-repeat left top;
+height:11px;
+margin-bottom:6px;
+width:668px;
+}
+.gateway-mod-list-top {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-list-top.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-list-top.jpg*/) no-repeat left top;
+height:17px;
+}
+.gateway-mod-list-center {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-list-center.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway-mod-list-center.jpg*/) repeat-y;
+padding-left:1px;
+width:666px;
+}
+.gateway-brand-title {
+margin-left:20px;
+padding-top:4px;
+}
+.gateway-list-border {
+border-bottom:1px dotted #666666;
+height:1px;
+margin:8px 0 10px 20px;
+width:620px;
+}
+
+.cell-read-our-reviews .gateway-list-border {
+  margin-left: 0;
+}
+
+.gateway-list-border img {
+display:none;
+}
+
+.gateway2-container {
+display:block;
+float:none;
+padding-left:8px;
+width:975px;
+top: -60px;
+}
+
+.page-cell-phones .gateway2-container {
+  float: left;
+  padding-left: 5px;
+  display: inline;
+  position: relative;
+  padding-top: 34px;
+  width: 979px;
+  top: 0;
+}
+
+.page-cell-phones .gateway2-container .gateway2-product img.transparent-png {
+  position: absolute;
+  top: -90px;
+}
+
+.gateway2-container.left-column.gateway {
+margin:0 0 5px 0;
+}
+.gateway2-container.gateway-left-col {
+float:left;
+margin:6px 5px 0 0;
+width:668px;
+}
+.gateway2-container.gray-border-gateway3 {
+width:667px;
+}
+
+.gateway2-container.right-col {
+float:right;
+margin:15px 0 0 0 !important;
+}
+
+.page-cell-phones .gateway2-container .right-col {
+  margin-top: 4px !important;
+}
+
+.gateway2-product {
+  position: relative;
+  display: inline !important;
+  float: none !important;
+  zoom:1 !important;
+  top: 0 !important;
+}
+
+.gateway2-product img {
+  zoom:1 !important;
+}
+
+.gateway2-container-top {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-top.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-top.gif*/) no-repeat scroll left top !important;
+  margin-top: -18px;
+}
+
+.gateway2-container-bottom {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-bottom.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-bottom.gif*/) no-repeat scroll left top !important;
+float:none;
+height:10px;
+margin-top:-5px;
+width:100%;
+}
+
+
+/* Faqs */
+.page-faqs .node {
+margin:0;
+clear:both;
+}
+
+.page-faqs .left-column.main-content {
+width:668px !important;
+padding:0;
+}
+
+.page-faqs .cont {
+border-top:1px solid #CCCCCC;
+margin:0;
+padding:0;
+width:668px;
+}
+
+.page-faqs .fullReport-top {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/faq-top.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/faq-top.gif*/) no-repeat scroll left top;
+clear:both;
+margin:1em 0 0 0;
+padding:0;
+width:668px !important;
+}
+.page-faqs .fullReport-content {
+background:none;
+width:665px !important;
+border-right:1px solid #ccc !important;
+border-left:1px solid #ccc !important;
+margin-top: -4px;
+}
+
+.page-faqs .fullReport-content-wrapper {
+background:none;
+border-bottom:1px solid #ccc;
+height:1px;
+}
+
+.page-faqs .fullReport-content-head {
+display:none;
+}
+
+.page-faqs .fullReport-left-col {
+clear:left;
+float:left;
+width:186px;
+padding-bottom:2px;
+}
+
+.page-faqs .fullReport-left-col-bkgd {
+background:none;
+border-right:1px dotted #ccc;
+width:258px !important;
+padding-top:1em;
+float:left;
+padding-bottom:25px;
+margin-left:-1px;
+}
+
+.page-faqs .fullreport-left-col-bottom {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/faq-left-col-bottom.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/faq-left-col-bottom.jpg*/) no-repeat scroll left bottom;
+height:43px;
+width:257px !important;
+position:absolute;
+z-index:100;
+}
+.page-faqs .fullReport-mid-col {
+float:left;
+line-height:1.66em;
+margin:0;
+width:400px;
+}
+
+
+/* Sub-Form Homepage*/
+.bg-input {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bg-input.jpg"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bg-input.jpg*/) no-repeat scroll left top;
+float:left;
+height:27px;
+margin-top:5px;
+width:205px;
+}
+
+/* Alpha Index */
+.page-alphaindex .brown-title {
+width:654px !important;
+}
+body.page-alphaindex .lb-gray-border {
+width:654px;
+margin-left:-1px;
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/block-brown-lb.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/block-brown-lb.gif*/) no-repeat scroll left bottom;
+height:5px;
+top:0;
+}
+.gray-border-gateway2 {
+background:transparent url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/block-brown-content.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/block-brown-content.gif*/) repeat-x scroll left bottom;
+border-left:1px solid #CCCCCC;
+border-right:1px solid #CCCCCC;
+float:none;
+padding:0;
+width:667px;
+}
+
+.page-alphaindex .gray-border-gateway2 {
+  width: 653px;
+}
+.page-alphaindex .b-gray-border {
+  top: -5px;
+}
+
+.resizable-textarea .grippie {
+  background: #eee url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/grippie.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/grippie.gif*/) no-repeat center 2px;
+}
+
+A.green-link.back-to-top {
+  background: transparent url("../../../sites/all/themes/zen/csnew/public/images/icons/uparrow.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/uparrow.gif*/) no-repeat left 40% !important;
+  font-size: 12px !important;
+  text-decoration:none;
+}
+A.green-link.back-to-top:HOVER{
+  text-decoration:underline;
+}
+
+.gateway2-container-top {
+	background: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-top.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-top.gif*/) no-repeat left top;
+}
+.gateway2-container-bottom {
+	background: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-bottom.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/gateway2-container-bottom.gif*/) no-repeat left top;
+}
+
+UL.primary-links LI.li-1 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-2 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-3 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-3 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-4 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-5 div.submenu-flyout {
+  margin-left: 0 !important;
+  width: 225px;
+}
+UL.primary-links LI.li-6 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-7 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+UL.primary-links LI.li-8 div.submenu-flyout {
+  margin-left: 0 !important;
+}
+
+.primary-submenu-home {
+  top: 129px;
+  padding-left: 4px;
+}      
+.primary-submenu-home-admin {
+  top: 149px;
+  padding-left: 4px;
+}      
+.primary-submenu-inside {
+  top: 118px;
+  padding-left: 4px;
+}
+.primary-submenu-inside-admin {
+  top: 138px;
+  padding-left: 4px;
+}
+
+.where-to-buy-small .corners-holder{
+  width: 128px;
+}
+
+.where-to-buy .corners-holder{
+  width: 657px;
+}
+
+.where-to-buy-small .outline-crt, .where-to-buy-small .outline-crb{
+  right: 1px;
+}
+
+.where-to-buy .outline-crt, .where-to-buy .outline-crb{
+  right: 2px;
+}
+
+.outline.amazon .outline-content {
+  width: 278px !important;
+}
+
+.outline.ebay .outline-content {
+  width: 298px !important;
+}
+
+.FullReport-Overlay-pagingLt a {
+  background: transparent url("../../../sites/all/themes/zen/csnew/public/images/scrollbar/leftArrow.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/scrollbar/leftArrow.gif*/) no-repeat 0 0;
+}
+.FullReport-Overlay-pagingRt a {
+  background: transparent url("../../../sites/all/themes/zen/csnew/public/images/scrollbar/rightArrow.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/scrollbar/rightArrow.gif*/) no-repeat 100% 0;
+}
+
+.expand-button {
+	background: url("../../../sites/all/themes/zen/csnew/public/images/buttons/expand.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/buttons/expand.gif*/) no-repeat 0 0;
+}
+.collapse-button {
+	background: url("../../../sites/all/themes/zen/csnew/public/images/buttons/collapse.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/buttons/collapse.gif*/) no-repeat 0 0;
+}
+
+.page-fast_answers .fast_answers_table .brown-title, .page-fast_answers .fast_answers_table .b-gray-border {
+	width:776px !important;
+}
+
+/* What this */
+.what-this-block .column {
+display:block;
+margin-right:20px;
+}
+
+.wtb-options .sort-options { position: absolute; } 
+
+#cs-wheretobuy-zipcode-form .form-item { 
+  line-height:30px;
+}
+#cs-wheretobuy-zipcode-form .form-text {
+  margin-top:5px;
+}
+
+/* flyouts */
+#cluetip {
+  width: 420px;
+}
+#cluetip-outer {
+  width: 420px;
+  background: transparent !important;
+}
+#cluetip-title {
+  top: 40px;
+  right: 18px;
+  display: inline !important;
+  z-index: 502;
+}
+#cluetip-inner .product-info {
+  margin-left: -232px;
+}
+body.page-all_reviews #cluetip, body.page-all_reviews #cluetip-outer {
+  width: 225px;
+}
+body.page-all_reviews #cluetip-inner .product-info {
+  margin-left: -143px;
+}
+body.page-all_reviews #cluetip-title {
+  right: 30px;
+}
+table.popup td.bubble-topleft { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-top-left.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-top-left.gif*/); 
+  }
+table.popup td.bubble-top { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-top.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-top.gif*/); 
+  }
+table.popup td.bubble-topright { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-top-right.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-top-right.gif*/);
+  }
+table.popup td.bubble-left {
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-middle-left.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-middle-left.gif*/); 
+  }
+table.popup td.bubble-right { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-middle-right.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-middle-right.gif*/); 
+  }
+table.popup td.bubble-bottomleft {
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom-left.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom-left.gif*/); 
+  }
+table.popup td.bubble-bottom { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom.gif*/); 
+  text-align: center;
+  }
+table.popup td.bubble-bottomright { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom-right.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom-right.gif*/); 
+  }
+table.popup td.bubble-bottom div.bubbletail { 
+  background-image: url("../../../sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom-tail.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/backgrounds/bubble-bottom-tail.gif*/);
+  }
+
+body.front #sidebar-right {
+  margin-top: 0 !important;
+}
+
+body.front #block-cs-8 {
+  width: 294px;
+}
+
+body.front .right-col .brown-title {
+  width: 295px;
+}
+
+body.front .right-col .gray-border {
+  width: 294px !important;
+}
+
+div.compare {
+  width: 776px;
+}
+div.compare ul.tabs li a {
+  height: 12px;
+}
+
+div#wtbtabs div.cs-tabs ul li.first-simple span.inner-amazon,
+div#wtbtabs div.cs-tabs ul li.first-tab span.inner-amazon,
+div#wtbtabs div.cs-tabs ul li.second-simple span.inner-amazon,
+div#wtbtabs div.cs-tabs ul li.second-tab span.inner-amazon {
+	background: url("../../../sites/all/themes/zen/csnew/public/images/icons/icon-amazon.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/icon-amazon.gif*/) no-repeat 6px 11px;
+}
+div#wtbtabs div.cs-tabs ul li.first-simple span.inner-ebay,
+div#wtbtabs div.cs-tabs ul li.first-tab span.inner-ebay,
+div#wtbtabs div.cs-tabs ul li.second-simple span.inner-ebay,
+div#wtbtabs div.cs-tabs ul li.second-tab span.inner-ebay {
+	background: url("../../../sites/all/themes/zen/csnew/public/images/icons/icon-ebay.gif"/*tpa=http://www.consumersearch.com/sites/all/themes/zen/csnew/public/images/icons/icon-ebay.gif*/) no-repeat 6px 11px;
+}
+
+div#wtbtabs-listing {
+  padding: 3px 0 10px 4px !important;
+}
+
+div#wtbtabs-listing div.enclose {
+  width: 651px;
+}
+div#wtbtabs-listing div.wtbtabs-highlight {
+	width: 640px;
+}
+
+div#wtbtabs-listing table.products {
+	width: 645px;
+	margin-bottom: 0 !important;
+}
+
+.cs-button a {
+  line-height: 1em;
+}
+
+/* workaround for IE issue */
+div.navigation-content a.bubbleInfo img.infoicon,
+div.navigation-content a.bubbleInfo img.infoicon {
+   margin-top: 3px;
+}
+

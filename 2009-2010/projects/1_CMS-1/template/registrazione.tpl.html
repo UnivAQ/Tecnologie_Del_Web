@@ -1,0 +1,36 @@
+{include file="header.tpl.html"}
+
+{if $tipo == "utente"}
+<h2>Registrazione Utente</h2>
+{else}
+<h2>Registrazione Azienda</h2>
+<h4>Per poter usare appieno il tuo account l'amministratore deve abilitare la tua azienda.
+    <br />Solo dopo potrai inserire prodotti.
+</h4>
+{/if}
+
+{if $reg_ok}
+<h3>Registrazione avvenuta con successo</h3>
+<h4>Riepilogo dei tuoi dati di accesso:</h4>
+    username: {$username}<br/>
+password:{$password}<br/>
+email: {$email}
+{/if}
+
+{if $username_exist}
+<h3>Username già esistente</h3>
+{/if}
+{if !$reg_ok}
+<form action="" method="post" id="reg_utente" name="reg_utente" onsubmit="return verificaRegUtente();">
+    <table>
+        <tr><td><input type="hidden" name="save" /></td></tr>
+        <tr><td>username:<td><input type="text" name="username"/></td></tr>
+        <tr><td> password:</td> <td><input type="password" name="password"/></td></tr>
+        <tr><td>email:</td> <td><input type="text" name="email"/></td></tr>
+        <tr><td><input type="submit" value="Registrati"/></td></tr>
+    </table>
+</form>
+{/if}
+
+
+{include file="footer.tpl.html"}

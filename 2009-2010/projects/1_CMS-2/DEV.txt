@@ -1,0 +1,63 @@
+[ Dependencies ]
+
+To get the project dependencies, you need to have installed:
+ - Ant 1.8
+ - Maven 2
+and to be connected to Internet.
+
+Be sure to include the "ant" and the "mvn" binary directories
+in the PATH env variable.
+
+Open a terminal and change the working directory to the directory with this README.
+
+Run:
+ant -f ant.xml
+
+Now you have all the dependencies needed by this project installed on your system.
+
+Congratulations, you have finished.
+
+
+
+[ Mercurial ]
+
+If you have to handle the Mercurial SCM, you may find useful these commands:
+
+# It gives you statistics about the work done on the local repository.
+hg stat
+
+# It saves your work.
+# This is the first step to share your work with your team.
+hg commit -A -m "Insert here a one line short comment about the work done."
+
+# It sends your work to the central repository.
+hg push
+
+# It gets the latest changes from the central repository
+# and puts them on your local repository.
+hg pull
+hg update
+# or as one-command alternative
+hg fetch
+
+# For the complete command list type:
+hg help
+# or
+hg help %{command}
+# for example, "hg help commit"
+
+
+
+[ References ]
+
+The source repository:
+http://bitbucket.org/daniele_orlando/tecweb/
+
+The guidelines:
+https://docs.google.com/document/pub?id=1X-hmAkDMfH0Ffx_fBXPFLg8v7dU_jqacpAGPXY8wrYU
+
+The tickets dev board:
+https://spreadsheets.google.com/pub?key=0AkP8Q7s-7VUGdFNHVnZPZE5hcmFhMERweXEtb280cUE&single=true&gid=0&output=html
+
+The tickets discussion board:
+https://docs.google.com/document/pub?id=1txO8A1Kv1RRcqsbXCvHvoVfRFVIaAVgiNoLKijX1GTY

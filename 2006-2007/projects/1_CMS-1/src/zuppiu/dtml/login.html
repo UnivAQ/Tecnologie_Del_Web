@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Prova</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script type="text/javascript" language="javascript" src="js/style.js"></script>
+<script type="text/javascript" language="javascript" src="js/actions.js"></script>
+</head>
+<body>
+
+<center>
+
+<div id="wrapper">
+	<div id="header"">&nbsp;</div>
+	
+	<div id="menu">
+		<br/>
+	</div>
+	
+	<div id="content">
+	<br/>
+		<form method="post" action="login.php">
+			<table class="login">
+				<caption>Login</caption>
+				<tr>
+					<td>Username: <input type="text" name="username" size="15" maxlength="20"/></td>
+				</tr>
+				<tr>
+					<td>Password: <input type="password" name="password" size="15" maxlength="20"/></td>
+				</tr>
+				<tr>
+					<td><button onclick="login();"> Login </button></td>
+				</tr>
+				<tr>
+					<td><button onclick="redir('http://localhost/zuppiu/index.php');"> Torna alla home page </button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+</center>
+
+</body>
+</html>

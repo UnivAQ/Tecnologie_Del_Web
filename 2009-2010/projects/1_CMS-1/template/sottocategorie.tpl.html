@@ -1,0 +1,22 @@
+{include file="header.tpl.html"}
+<h2>Sottocategoria</h2><br/>
+<a href="macrocategorie.php?id_macrocategoria={$categoria.id_macrocategoria}">{$categoria.nome_macrocategoria}</a>  >  <a href="sottocategorie.php?id_categoria={$categoria.id_categoria}">{$categoria.nome_categoria}</a><br /><br />
+
+
+
+
+ <div class="productContainer">
+     
+{if $categoria.prodotto}
+{foreach from=$categoria.prodotto item=prodotto}
+<div class="pic1"><img src="img.php?id={$prodotto.id_prodotto}" alt="s" width="100" />
+    <div class="picText1"><strong><a href="prodotto.php?id_prodotto={$prodotto.id_prodotto}">{$prodotto.titolo}</a></strong></div>
+            {$prodotto.descrizione}...
+        </div>
+       {/foreach}
+
+    </div>
+{else}
+Nessun prodotto nella categoria
+{/if}
+{include file="footer.tpl.html"}

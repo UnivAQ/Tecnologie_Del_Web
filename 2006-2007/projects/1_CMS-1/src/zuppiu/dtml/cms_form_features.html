@@ -1,0 +1,27 @@
+<[message::mex library="zuppiu"]>
+<form name="form_features" method="post">
+<input type="hidden" name="page" value="1"/>
+<table class="forms">
+	<tr>
+		<td class="title" colspan="2">Features di <[nomeservizio]></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Nome servizio:</td>
+		<td width="80%"><input type="text" name="nomeservizio" size="20" value="<[nomeservizio]>" /></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right" valign="top">Descrizione:</td>
+		<td width="80%"><textarea name="descrizione" rows="6"><[descrizione]></textarea></td>
+	</tr>
+	<tr>
+		<td width="20%" align="right">Responsabile:</td>
+		<td width="80%"><input type="text" name="responsabile" maxlength="50" size="30" value="<[responsabile]>" /></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+		<button type="button" onclick="checkFields('features','form_features')">Salva</button>
+		<button type="reset">Cancella</button>
+		</td>
+	</tr>
+</table>
+</form>

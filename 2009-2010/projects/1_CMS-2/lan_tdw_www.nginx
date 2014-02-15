@@ -1,0 +1,44 @@
+server {
+    listen 80;
+    server_name www.tdw.lan;
+
+    client_max_body_size 8m;
+
+    access_log /var/log/nginx/lan_tdw_www.access.log;
+    error_log  /var/log/nginx/lan_tdw_www.error.log;
+
+    location = / {
+        root /var/http/lan.tdw.www/pub;
+        #index /index.php;
+        index /init.php;
+    }
+
+    location / {
+        root /var/http/lan.tdw.www/pub;
+
+        if (!-e $request_filename) {
+                #rewrite ^(/.*)/$ $1.php last;
+                #rewrite ^(/.*) $1.php last;
+                rewrite ^/.*$ /init.php last;
+                break;
+        }
+    }
+
+    location ~ \.php {
+        #set $target "/var/http/lan.tdw.www/libs/tdw/app${fastcgi_script_name}";
+
+        #if (!-f $target) {
+        #    return 404;
+        #}
+
+        fastcgi_pass  127.0.0.1:9000;
+        #fastcgi_param SCRIPT_FILENAME $target;
+        fastcgi_param SCRIPT_FILENAME /var/http/lan.tdw.www/libs/tdw${fastcgi_script_name};
+
+        include fastcgi_params;
+    }
+
+    location ~ /\.ht {
+        deny  all;
+    }
+}

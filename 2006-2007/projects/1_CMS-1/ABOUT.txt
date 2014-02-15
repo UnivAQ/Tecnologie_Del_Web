@@ -1,0 +1,13 @@
+Tecnologie Del Web - 2007/2008
+
+Project 3
+
+Paolo Bozzelli
+Matteo Nobili
+Simone Monaco
+
+Realizzazione di un Content Management System (CMS),
+tramite l'implementazione di un'architettura 3-tier (Presentation - Application - Data)
+per mezzo di PHP (application), HTML (presentation) e SQL (data).
+
+Codename: Zuppiu.
